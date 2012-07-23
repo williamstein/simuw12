@@ -1,0 +1,51 @@
+
+<p>There are many innocent sounding questions about primes... that are really hard to answer!</p>
+<p>For example:</p>
+<p><strong>Question:</strong>&nbsp;<em>Are there infinitely many pairs of primes whose difference is 2?</em> &nbsp; (Nobody knows!)</p>
+<p>It easy to search for such pairs using Sage, and if you try the code below you'll be quickly convinced about what the answer <em><strong>should be</strong></em>. &nbsp; &nbsp;But nobody knows for sure, despite many, many people attempting to find a proof!</p>
+
+{{{id=6|
+for p in prime_range(1000):
+    if (p+2).is_prime():
+        print (p, p+2),         # comma so no newline
+///
+}}}
+
+<p>You an ask the same question, but with 4, 6, 8, or any even number instead of 2. &nbsp;Nobody knows the answer. &nbsp;You can also try to use Sage to figure out what the answer "should be". Try now.</p>
+
+{{{id=4|
+
+///
+}}}
+
+<p><strong>Question: </strong>Are there infinitely many primes that are 1 more than a perfect square, i.e., of the form $n^2 + 1$?</p>
+<p>&nbsp;Again, nobody knows (!), yet if you try computing with Sage you'll quickly form an <em><strong>opinion</strong></em>.</p>
+
+{{{id=3|
+for n in [1..100]:
+    if (n^2+1).is_pseudoprime():
+        print n^2+1,
+///
+}}}
+
+{{{id=2|
+
+///
+}}}
+
+<p><strong>Question:</strong><em> Are there infinitely many Mersenne primes $2^p-1$?</em> &nbsp;Nobody knows!</p>
+
+{{{id=13|
+
+///
+}}}
+
+<p>Asking interesting questions about the mathematics you study is a high are, and an essential skill to acquire in order to get the most enjoyment---and understanding---from mathematics. &nbsp;So your <em><strong>homework</strong></em> for tonight is to come up with your question about primes that:</p>
+<ul>
+<li>is interesting to you,</li>
+<li>is not a question whose answer is known to you,</li>
+<li>is not a question that you've seen before; or at least not exactly,</li>
+<li>is a question about which you can begin to make numerical investigations (in fact, do so if you can).</li>
+</ul>
+<p>We will share our questions at the beginning tomorrow.&nbsp;</p>
+

@@ -23,3 +23,4 @@ Day 1
   * [Prime Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day01/prime_numbers.txt)
   * [Infinitely Many Prime Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day01/infinitely_many_primes.txt)
   * [Finding all prime numbers up to a given bound (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day01/finding_all_primes.txt)
+  * [Ask your own question about primes (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day01/ask_your_own_question.txt)
