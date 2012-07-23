@@ -1,13 +1,162 @@
 Day 1: Introduction to Sage
 
-{{{id=1|
-2+3
+<p>This is a quick tutorial to show you a few basics of how to use Sage. &nbsp;</p>
+<p><strong>What is Sage?</strong></p>
+<ul>
+<li>Sage is a very,<strong> very large</strong> program that addresses many areas of computational mathematics, including some <strong>very advanced mathematics</strong></li>
+<li>Sage has a <strong>web-browser interface</strong> (you are using it now)</li>
+<li>Sage is <strong>100% free</strong> and open source</li>
+<li>You communicate with Sage using the <strong>Python</strong> programming language</li>
+<li><strong>I started Sage</strong> in 2005</li>
+</ul>
+
+{{{id=5|
+
 ///
-5
 }}}
 
-{{{id=2|
-factor(2012)
+<p>Basic Arithmetic</p>
+
+{{{id=20|
+2 + 3   # press shift-enter
 ///
-2^2 * 503
+}}}
+
+{{{id=22|
+9290348234 * 39048029384
+///
+}}}
+
+{{{id=21|
+2^5   # 2 to the power of 5
+///
+}}}
+
+{{{id=19|
+a = 5        # set variables
+b = 7
+a*b + a/b    # use them later
+///
+}}}
+
+{{{id=18|
+(2 + 5)*11
+///
+}}}
+
+{{{id=4|
+
+///
+}}}
+
+{{{id=3|
+
+///
+}}}
+
+<p>Basic Programming</p>
+
+{{{id=35|
+for i in [1,3,..,9]:
+    print i, i^2
+///
+}}}
+
+{{{id=24|
+a = 3; b = 5
+if a < b:
+    print "a is less than b"
+///
+}}}
+
+{{{id=11|
+def foo(n, m):
+    print "n = %s, m = %s"%(n,m)
+    return n*m
+///
+}}}
+
+{{{id=25|
+z = foo(2,3)
+///
+}}}
+
+{{{id=26|
+z
+///
+}}}
+
+{{{id=10|
+
+///
+}}}
+
+<p>Drawing Plots</p>
+
+{{{id=28|
+plot(sin(x^2), (x, -2, pi), figsize=3)
+///
+}}}
+
+{{{id=29|
+G = plot(sin(x^2), (x, -2, pi)) + plot(cos(x^2), (x,-2,pi), color='red')
+G.show(figsize=3)
+///
+}}}
+
+{{{id=30|
+icosahedron()       # heavy, painful, uses JAVA (!)
+///
+}}}
+
+{{{id=9|
+icosahedron(viewer='tachyon')      # does not use JAVA
+///
+}}}
+
+<p>For more about plotting: &nbsp;&nbsp;</p>
+<ul>
+<li><a href="../../../doc/static/reference/plotting.html" target="_blank">2d graphics documentation</a></li>
+<li><a href="../../../doc/static/reference/plot3d.html" target="_blank">3d graphics documentation</a></li>
+</ul>
+
+{{{id=31|
+
+///
+}}}
+
+{{{id=8|
+
+///
+}}}
+
+<p>The @interact "decorator" makes functions interactive, so your can easily vary the input and see the results.&nbsp;</p>
+
+{{{id=16|
+@interact
+def foo(n=(1..10), m=(1..10)):
+    print "n^2 + m^2 = %s = %s"%(n^2+m^2, factor(n^2+m^2))
+///
+}}}
+
+{{{id=15|
+
+///
+}}}
+
+<p>For more help, type<strong> interact?</strong> or <a href="../../../doc/static/reference/sagenb/notebook/interact.html" target="_blank">view the documentation</a>. &nbsp; For numerous examples, see&nbsp;<a href="http://interact.sagemath.org/" target="_blank">http://interact.sagemath.org/</a></p>
+
+{{{id=33|
+
+///
+}}}
+
+{{{id=13|
+
+///
+}}}
+
+{{{id=1|
+
+///
 }}}
