@@ -7,4 +7,5 @@ Getting Started with Sage!
  1. Click in the grey box (with a red line next to it) and type "2+3", then either press "shift-enter" or click the "evaluate" link. 
  1. If you see "5" as the output, Sage is working for you!
  1. Click Help in the upper right then read the section "How to use the Sage Notebook" for a description of all features of the notebook user interfaces. 
- 1. Click on [Fast Static Versions of the Documentation](http://simuw.sagenb.org/doc/static/index.html) near the top left of the help page for thousands of pages of documentation.  [The reference manual](http://simuw.sagenb.org/doc/static/reference/index.html) documents many of the functions in Sage.
+ 1. Click on [Fast Static Versions of the Documentation](http://simuw.sagenb.org/doc/static/index.html) near the top left of the help page for thousands of pages of documentation. 
+The [tutorial](http://simuw.sagenb.org/doc/static/tutorial/index.html) is contains an example-oriented overview of Sage, and [reference manual](http://simuw.sagenb.org/doc/static/reference/index.html) documents many of the functions in Sage.
