@@ -1,0 +1,120 @@
+Day 1: How Many Primes Are There?
+
+<p><strong><img src="http://www.nndb.com/people/724/000087463/euclid-1-sized.jpg" alt="" width="164" /></strong></p>
+<p><strong><br /></strong></p>
+<p><strong>Question:</strong> How many prime numbers are there? &nbsp;</p>
+<p>&nbsp;</p>
+<p>From the previous worksheet, a reasonable guess is: "<em>there are infinitely many primes</em>."</p>
+
+<p>That's right. &nbsp;Here's a proof: &nbsp; Given primes $p_1, ...,
+p_m$, let $n=p_1 p_2 ... p_m + 1$. &nbsp;Then $n$ is disibile by some
+prime not equal to any $p_i$, so there are more than $m$
+primes.&nbsp;</p>
+
+<p>(PROOF WITH MORE DETAILS: Suppose that there are only finitely many
+primes $p_1,p_2, ..., p_m$. &nbsp;Let $n=p_1 ... p_m+1$ be one more
+than the product of the $p_i$. If $n$ is prime, it is bigger than all
+other $p_i$, so our assumption that the $p_i$ are all the primes is
+false. &nbsp;If $n$ is not prime, it is divisible by some prime
+$p$. &nbsp;However, $p$ cannot equal any $p_i$, since the remainder
+upon dividing $n$ by each $p_i$ is $1$, whereas the remainder upon
+dividing $n$ by $p$ is 0.)</p>
+
+{{{id=4|
+
+///
+}}}
+
+<p>We can turn the above proof into an function that takes as input a list of primes and produces a new prime.</p>
+
+{{{id=3|
+def f(v):
+    n = prod(v) + 1
+    return factor(n)[0][0]
+///
+}}}
+
+{{{id=1|
+f([2,3])
+///
+}}}
+
+{{{id=6|
+f([2,3,7])
+///
+}}}
+
+{{{id=7|
+f([2,3,7,43])
+///
+}}}
+
+{{{id=10|
+
+///
+}}}
+
+<p><strong>The Biggest Prime</strong></p>
+<p>The number $2^{43112609}-1$ is the biggest <span style="text-decoration: underline;">known</span> prime number. &nbsp; &nbsp;</p>
+<p>The above prime won a prize! &nbsp;See&nbsp;<a href="https://www.eff.org/awards/coop" target="_blank">https://www.eff.org/awards/coop</a>.</p>
+<p>By the above proof we know there are bigger primes. &nbsp;We even know an algorithm to find one. &nbsp;Unfortunately, it would take to the end of time to run that algorithm...</p>
+<p>Do you think you will live to see a 100,000,000 digit prime?</p>
+
+{{{id=13|
+time p = 2^43112609 - 1  # computes it in binary
+///
+}}}
+
+{{{id=11|
+# convert to *decimal*: this is hard; it takes a few seconds.
+time n = str(p)
+///
+}}}
+
+{{{id=17|
+len(n)
+///
+}}}
+
+{{{id=8|
+n[:10]   # first 10 digits
+///
+}}}
+
+{{{id=14|
+n[-10:]  # last 10 digits
+///
+}}}
+
+{{{id=15|
+# i do *not* recommend printing out n itself
+///
+}}}
+
+{{{id=18|
+
+///
+}}}
+
+<p><img src="http://www-history.mcs.st-andrews.ac.uk/BigPictures/Mersenne.jpeg" alt="" width="164" /></p>
+<p>Primes of the form $2^p-1$ are called <strong>Mersenne Primes</strong>.</p>
+<p>Let's find some:</p>
+
+{{{id=16|
+for p in prime_range(2000):
+    if (2^p - 1).is_pseudoprime():
+        print p
+///
+}}}
+
+<p>Do you think there are infinitely many Mersenne primes?</p>
+<p>(Nobody actually knows whether or not there are.)</p>
+
+{{{id=20|
+
+///
+}}}
+
+<p><strong>Mathematics Exercise:</strong> &nbsp;Prove that if $2^n - 1$ is a prime number, then $n$ must be prime.</p>
+<p>(use a pencil and paper for this)</p>
+
