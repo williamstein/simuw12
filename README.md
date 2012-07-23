@@ -12,10 +12,11 @@ Course Goals
   * Learn the powerful free open source math software system Sage.
   * Learn what the Riemann Hypothesis really is, and much interesting mathematics along the way: prime numbers, Fourier series, some advanced Calculus, and more.
   
-NOTES: 
-  * You '''must''' be logged into (simuw.sagenb.org)[http://simuw.sagenb.org] in order that clicking on the worksheet links below create a worksheet!
-  * Clicking on the link creates a brand '''new''' worksheet.  If you then edit it, you'll find your modified worksheet in your (home screen)[http://simuw.sagenb.org/home].
+NOTES
+=====
+  * You '''must''' be logged into [simuw.sagenb.org](http://simuw.sagenb.org) in order for clicking on the worksheet links below create a worksheet!
+  * Clicking on the link creates a brand '''new''' worksheet.  If you then edit it, you'll find your modified worksheet in your [home screen](http://simuw.sagenb.org/home).
 
 Day 1
 -----
-  * [Introduction to Sage (worksheet)](http://simuw.sagenb.org?upload_worksheet=https://raw.github.com/williamstein/simuw12/master/day01/intro_to_sage.txt)
+  * [Introduction to Sage (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day01/intro_to_sage.txt)
