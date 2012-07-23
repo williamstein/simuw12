@@ -1,4 +1,5 @@
-Day 1: Introduction to Sage 
+Day 1: Introduction to Sage
+system:sage
 
 {{{id=1|
 2+3
