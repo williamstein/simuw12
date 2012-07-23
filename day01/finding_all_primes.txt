@@ -1,0 +1,33 @@
+Day 1: Finding all prime numbers up to a given bound
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Portrait_of_Eratosthenes.png/220px-Portrait_of_Eratosthenes.png" alt="" width="220" height="218" /></p>
+<p>Eratosthenes described a way to <strong>sift</strong>&nbsp;the prime numbers from the series of all numbers:</p>
+<p>Start with &nbsp;2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,&nbsp;22, 23, 24, 25, 26&nbsp;and circle 2, then cross out all other multiples of 2. &nbsp;</p>
+<p><span>Next, go back to the beginning of our sequence of numbers and circle the first number that is neither circled nor crossed out (that would be, of course, the 3), then cross out all the other multiples of 3.&nbsp;</span></p>
+<p><span>This gives the pattern: go back again to the beginning of our sequence of numbers and circle the first number that is neither circled nor crossed out; then cross out all of its other multiples. Repeat this pattern until all the numbers in our sequence are either circled, or crossed out, the circled ones being the primes.</span></p>
+<p><span><br /></span></p>
+<p><span><img src="https://github.com/williamstein/simuw12/raw/master/day01/sieve26.png" alt="" /></span></p>
+
+{{{id=4|
+prime_range(27)
+///
+}}}
+
+{{{id=2|
+
+///
+}}}
+
+<p>Do the above on paper yourself using the strips I'm handing out, which I made by printing <a href="https://github.com/williamstein/simuw12/raw/master/day01/strip.pdf" target="_blank">this pdf</a>.</p>
+
+<p>This is how many numbers you should have circled...</p>
+
+{{{id=1|
+prime_pi(100)
+///
+}}}
+
+{{{id=6|
+
+///
+}}}
