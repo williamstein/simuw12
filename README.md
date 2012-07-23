@@ -1,4 +1,4 @@
-simuw12
-=======
+SIMUW 2012 -- Riemann Hypothesis
+================================
 
-SIMUW 2012 content
+* [Notebook Server](http://simuw.sagenb.org)
