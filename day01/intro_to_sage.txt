@@ -1,3 +1,5 @@
+Day 1: Introduction to Sage 
+
 {{{id=1|
 2+3
 ///
