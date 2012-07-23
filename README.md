@@ -20,3 +20,4 @@ NOTES
 Day 1
 -----
   * [Introduction to Sage (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day01/intro_to_sage.txt)
+  * [Prime Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day01/prime_numbers.txt)
