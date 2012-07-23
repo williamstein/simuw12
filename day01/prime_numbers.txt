@@ -1,0 +1,91 @@
+Day 1: Prime Numbers
+
+<p>A <strong>prime number</strong> is a whole number, bigger than 1, that cannot be factored into a product of two smaller whole numbers.</p>
+<p>&nbsp;</p>
+<p><strong>Theorem (Euclid): </strong><em>Every positive whole number can be written uniquely as a product of prime numbers.</em></p>
+
+<p>Try factoring some numbers (select Action-&gt; Interrupt) from the menu above if you enter a huge number that takes "forever" to factor:</p>
+
+{{{id=3|
+@interact
+def f(n=2012):
+    print "n =", n
+    time print factor(int(n))
+///
+}}}
+
+<p><strong>Note:</strong> Some numbers take a long time to factor using current software. &nbsp;This is a key idea behind much modern cryptography (secret messages).</p>
+
+{{{id=5|
+
+///
+}}}
+
+<p>The function prime_range(X) in sage lists the primes up to (but not including) X and the function prime_pi(X) counts the number of primes up to (and including) X.</p>
+
+{{{id=8|
+prime_range(10)
+///
+}}}
+
+{{{id=1|
+prime_range(23)
+///
+}}}
+
+{{{id=10|
+prime_pi(23)
+///
+}}}
+
+{{{id=12|
+
+///
+}}}
+
+<p>Exercise: Use Sage to answer the following questions:</p>
+<ol>
+<li>How many prime numbers are there less than 100?</li>
+<li>How many less than 10,000?</li>
+<li>How many less than 1,000,000?</li>
+</ol>
+
+{{{id=13|
+
+///
+}}}
+
+{{{id=16|
+
+///
+}}}
+
+{{{id=15|
+
+///
+}}}
+
+{{{id=17|
+
+///
+}}}
+
+{{{id=18|
+
+///
+}}}
+
+<p><strong>The Riemann Hypothesis: &nbsp;</strong>A proposal for a strikingly simple-to-describe "very good approximation" to the number of primes less than a given number X. &nbsp;</p>
+
+{{{id=19|
+
+///
+}}}
+
+<p><strong>Don Zagier:&nbsp;</strong></p>
+<p><span>"There are two facts about the distribution of prime numbers of which I hope to convince you so overwhelmingly that they will be permanently engraved in your hearts. The first is that, [they are] the most arbitrary and ornery objects studied by mathematicians: they grow like weeds among the natural numbers, seeming to obey no other law than that of chance, and nobody can predict where the next one will sprout. The second fact is even more astonishing, for it states just the opposite: that the prime numbers exhibit stunning regularity, that there are laws governing their behavior, and that they obey these laws with almost military precision."</span></p>
+
+{{{id=11|
+
+///
+}}}
