@@ -27,12 +27,12 @@ Day 1: Prime Numbers
 
 Day 2: A Precise Statement of the Riemann Hypothesis
 ----------------------------------------------------
-  * Handout a prime number to everybody
+  * [Handout a prime number to everybody](https://github.com/williamstein/simuw12/blob/master/day02/primes.pdf?raw=true)
   * Discuss the questions you came up with about primes numbers
   * [Prime gaps] -- TODO
-  * [Graphs of the proportion of primes up to X]
-  * [Graphs of the number of primes up to X]
-  * [Fitting the curve: Gauss's proposal]
-  * [What is a good approximation?]
-  * [Fitting the curve: Riemann's Hypothesis]
+  * [Graphs of the proportion of primes up to X] -- TODO
+  * [Graphs of the number of primes up to X] -- TODO
+  * [Fitting the curve: Gauss's proposal] -- TODO
+  * [What is a good approximation?] -- TODO
+  * [Fitting the curve: Riemann's Hypothesis] -- TODO
 
