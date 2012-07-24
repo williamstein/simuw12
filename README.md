@@ -31,7 +31,7 @@ Day 2: A Precise Statement of the Riemann Hypothesis
   * Discuss the questions you came up with about primes numbers
   * [Prime gaps (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day02/prime_gaps.txt)
   * [Multiplicative parity (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day02/multiplicative_parity.txt)
-  * [What Proportion of Numbers are Prime?The proportion of prime numbers up to X](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day02/prime_proportion.txt)
+  * [What Proportion of Numbers are Prime?](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day02/prime_proportion.txt)
   * [Fitting the curve: Gauss's proposal] -- TODO
   * [What is a good approximation?] -- TODO
   * [Fitting the curve: Riemann's Hypothesis] -- TODO
