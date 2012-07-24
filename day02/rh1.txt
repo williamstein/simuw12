@@ -38,6 +38,8 @@ def f(X=[9,99,999,9999,99999]):
 ///
 }}}
 
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Carl_Friedrich_Gauss.jpg/187px-Carl_Friedrich_Gauss.jpg">
+<br>
 <p>Gauss's Guess is even more refined. He guesses that there are $G(X)$ primes up to $X$, where</p>
 <p>$$G(X) = \int_{2}^X \frac{dt}{\log(t)} &nbsp;= \text{area under the graph of $1/\log(t)$ from $2$ to $X$}$$</p>
 
