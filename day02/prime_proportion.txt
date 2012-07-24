@@ -1,0 +1,157 @@
+Day 2: What Proportion of Numbers are Prime?
+
+
+<p>We keep counting how many numbers have some property. &nbsp;Let's count primes. &nbsp;</p>
+
+{{{id=1|
+len(prime_range(30))
+///
+}}}
+
+{{{id=2|
+prime_pi(30)
+///
+}}}
+
+<p>1/3 of the numbers up to 30 are prime:</p>
+
+{{{id=3|
+10/30
+///
+}}}
+
+{{{id=4|
+prime_pi(100)
+///
+}}}
+
+<p>1/4 of the primes up to 100 are prime:</p>
+
+{{{id=6|
+25/100
+///
+}}}
+
+{{{id=8|
+prime_pi(1000)
+///
+}}}
+
+<p>Roughly 1/6 of the primes up to 1000 are prime:</p>
+
+{{{id=10|
+168/1000, N(168/1000)
+///
+}}}
+
+{{{id=11|
+1.0/6
+///
+}}}
+
+{{{id=14|
+
+///
+}}}
+
+<p>Do you see any patterns? &nbsp;Do you have&nbsp;<em><strong>any</strong></em>&nbsp;observations at all?</p>
+<p>&nbsp;</p>
+
+{{{id=16|
+
+///
+}}}
+
+<p>Let's plot the proportion of primes up to $X$ as a function of $X$:</p>
+
+{{{id=13|
+@interact
+def proportion_of_primes(X=100):
+    v = []
+    num_primes = 0
+    for p in prime_range(X+1):
+        num_primes += 1
+        v.append((p, num_primes/p))
+    show(line(v), figsize=[8,3.5], ymin=0)
+///
+}}}
+
+<p><strong>Any guesses?</strong></p>
+
+{{{id=23|
+prime_pi(1e9)/1e9
+///
+}}}
+
+{{{id=22|
+prime_pi(1e10)/1e10
+///
+}}}
+
+{{{id=20|
+1/22.0
+///
+}}}
+
+{{{id=24|
+
+///
+}}}
+
+<p><strong>Conclusion: </strong>&nbsp;The primes are thinning out. &nbsp; I.e., it seems like $$\lim_{X\to\infty} \frac{\pi(X)}{X} = 0$$</p>
+
+{{{id=27|
+
+///
+}}}
+
+<p>Claim:&nbsp;$\lim_{X\to\infty} \frac{\pi(X)}{X} \leq \frac{1}{2}$.</p>
+<p>Proof: Remember when we sieved the primes up to 100? &nbsp;We started by throwing away all multiples of $2$ (except $2$ itself). &nbsp;</p>
+<p>The primes are contained in what is left.</p>
+
+{{{id=29|
+
+///
+}}}
+
+<p>Claim:&nbsp;$\lim_{X\to\infty} \frac{\pi(X)}{X} \leq \frac{1}{2} \cdot \frac{2}{3}$.</p>
+<p>Proof: Next, after throwing away the multiples of 2, we threw away the multiples of 3 from what remains, leaving only $2/3$s of what we had.</p>
+<p>(We didn't throw away 3, but in the limit that doesn't matter.)</p>
+
+{{{id=32|
+
+///
+}}}
+
+<p>Claim:&nbsp;$\lim_{X\to\infty} \frac{\pi(X)}{X} \leq \frac{1}{2} \cdot \frac{2}{3} \cdot \frac{4}{5}$.</p>
+<p>Proof: Next, after throwing away the multiples of 2 and 3, we threw away the multiples of 5 from what remains, leaving only $4/5$s of what we had.</p>
+<p>(We didn't throw away 5, but in the limit that doesn't matter.)</p>
+
+{{{id=30|
+
+///
+}}}
+
+{{{id=19|
+1/2 * (2/3) * (4/5) * (6/7) * (10/11) *1.
+///
+}}}
+
+{{{id=35|
+
+///
+}}}
+
+<p>Primes are subtle. &nbsp;The above argument proves that -- except for little jumps along the way -- $\pi(X)/X$ is decreasing. &nbsp;But it could still have a positive limit.</p>
+<p><strong>Exercise:</strong> Construct a sequence of integers $a_n$ such that $\prod \frac{a_n-1}{a_n} \geq \frac{1}{2}$.</p>
+<p>It turns out there are <em>enough primes</em> to force the prod corresponding to the primes $p_n$ to $0$... but not so many primes as to have positive density!</p>
+
+{{{id=26|
+
+///
+}}}
+
+{{{id=37|
+
+///
+}}}
