@@ -29,7 +29,7 @@ Day 2: A Precise Statement of the Riemann Hypothesis
 ----------------------------------------------------
   * [Handout a prime number to everybody](https://github.com/williamstein/simuw12/blob/master/day02/primes.pdf?raw=true)
   * Discuss the questions you came up with about primes numbers
-  * [Prime gaps]((http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day02/prime_gaps.txt)
+  * [Prime gaps (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day02/prime_gaps.txt)
   * [Graphs of the proportion of primes up to X] -- TODO
   * [Graphs of the number of primes up to X] -- TODO
   * [Fitting the curve: Gauss's proposal] -- TODO
