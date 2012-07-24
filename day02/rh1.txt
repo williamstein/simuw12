@@ -1,0 +1,130 @@
+Day 2: Counting Primes - Riemann Hypothesis (first formulation)
+
+<p>Instead of counting the proportion of primes amongst all numbers, lets count primes themselves by plotting the function&nbsp;</p>
+<p>$$ \pi(X) = \text{ the number of primes up to } X$$</p>
+
+{{{id=3|
+@interact
+def f(n=30):
+    plot(prime_pi, 1, n).show(figsize=[7,3])
+///
+}}}
+
+<p>For large n, it just <strong>looks</strong>&nbsp;-- from a distance, in our plot -- like some nice smooth curve. &nbsp;Hmm, I wonder what curve it is? &nbsp;Any guesses:</p>
+<ul>
+<li>a straight line? &nbsp;</li>
+<li>something like $x^{1/2}$?</li>
+<li>??</li>
+</ul>
+
+{{{id=7|
+
+///
+}}}
+
+<p><strong>Numerical Observation: </strong>The number of primes up to $X$ is roughly $X$ divided by twice the number of digits of $X$. &nbsp;</p>
+<p>For example:</p>
+
+{{{id=4|
+@interact
+def f(X=[9,99,999,9999,99999]):
+    print "X/twice num digits =", N(X/(2*len(str(X))))
+    print "pi(X) = ", prime_pi(X)
+///
+}}}
+
+{{{id=12|
+
+///
+}}}
+
+<p>Gauss's Guess is even more refined. He guesses that there are $G(X)$ primes up to $X$, where</p>
+<p>$$G(X) = \int_{2}^X \frac{dt}{\log(t)} &nbsp;= \text{area under the graph of $1/\log(t)$ from $2$ to $X$}$$</p>
+
+{{{id=11|
+var('t')
+plot(1/log(t), (t, 2, 100), fill='axis').show(figsize=[7,3])
+///
+}}}
+
+{{{id=1|
+@interact
+def f(X=99):
+    print "Primes up to %s"%X
+    print "Gauss's guess =", numerical_integral(1/log(t), (2, X))[0]
+    print "actual number of primes =", prime_pi(X)
+///
+}}}
+
+{{{id=16|
+
+///
+}}}
+
+<p>As $X$ gets bigger and bigger, Gauss's guess gets more and more shockingly impressive! &nbsp;Wow.</p>
+<p>The plot of Gauss's guess and reality quickly becomes indistinguishable to our eyes!</p>
+
+{{{id=15|
+g = plot(prime_pi, 2, 10^5)
+h = plot(Li, 2, 10^5, color='red')  # called "Li" in mathematics for "log integral"
+///
+}}}
+
+{{{id=18|
+graphics_array([g,h]).show(figsize=[6,3])
+///
+}}}
+
+{{{id=19|
+(g + h).show(figsize=[6,3])
+///
+}}}
+
+{{{id=21|
+
+///
+}}}
+
+<p><span>Tom&aacute;s Oliveira e Silva heroically computed $\pi(10^{23})$ somehow in 2008, and got:</span></p>
+<p><span>$$\pi(10^{23}) =&nbsp;<span>1,925,320,391,606,803,968,923$$</span></span></p>
+<p><span><span>How does that compare to Gauss's guess?</span></span></p>
+
+{{{id=20|
+z = 1925320391606803968923
+g = Li(10^23)
+///
+}}}
+
+{{{id=24|
+print z, g
+///
+}}}
+
+{{{id=25|
+# ugh
+g = gp('-eint1(log(1/%s))'%(10^23)).sage(); g
+///
+}}}
+
+{{{id=27|
+print "%30s\n%30s"%(z,int(g))
+///
+}}}
+
+{{{id=29|
+
+///
+}}}
+
+<p><strong>Conjecture (The Riemann Hypothesis): &nbsp;</strong>For every $X\geq 2.01$, we have $$|\pi(X) - {\rm Li}(X)| \leq \sqrt{X}\cdot \log(X).$$</p>
+<p>I.e., "(roughly) the first half of the digits of $\pi(X)$ and ${\rm Li}(X)$ are always the same"</p>
+
+{{{id=31|
+
+///
+}}}
+
+{{{id=28|
+
+///
+}}}
