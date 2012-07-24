@@ -1,0 +1,117 @@
+Day 2: Racing Prime Gaps
+
+<p><strong>Twin Primes: </strong>Primes $p$ and $q$ with $p-q=2$ -- shout out some examples.</p>
+<p><strong>Twin Prime Conjecture: </strong><em>There are infinitely many twin primes</em>.</p>
+<p>Evidence:</p>
+<ol>
+<li>Sage spits out lots of them (we tried this yesterday).</li>
+<li>People keep finding huge ones (the record is from Jan 2007):</li>
+</ol>
+
+{{{id=1|
+p = 3756801695685 *2^666669 - 1; q = p + 2
+///
+}}}
+
+{{{id=3|
+s = str(p)
+len(s)
+///
+200700
+}}}
+
+{{{id=8|
+s[:20]
+///
+'87296650787303280913'
+}}}
+
+{{{id=9|
+s[-20:]
+///
+'28088317525329182719'
+}}}
+
+{{{id=4|
+p.is_pseudoprime # would take a *long* time in sage...
+///
+}}}
+
+{{{id=6|
+p.trial_division(100000) == p   # no small prime factors
+///
+True
+}}}
+
+{{{id=13|
+
+///
+}}}
+
+<p>More generally, define $Gap_k(X)$ to be the number of <em>successive</em>&nbsp;primes $(p,q)$ with $q-p=k$ and $p,q&lt;X$.</p>
+<p>Twin prime conjecture = $Gap_2(X)$ is unbounded as $X$ goes to infinity.</p>
+<p><strong>Stop and think: </strong>If we fix an $X$ and consider $Gap_k(X)$ for various $k$, there will be (at least) one that wins the race up to $X$, i.e., the most popular prime gap. &nbsp;What is it? &nbsp; 2? &nbsp;</p>
+
+{{{id=12|
+def Gap(k, X):
+    return len([q for q in prime_range(X) if (q-k).is_pseudoprime()])
+///
+}}}
+
+{{{id=11|
+time Gap(2,10^7)
+///
+58980
+Time: CPU 1.33 s, Wall: 1.32 s
+}}}
+
+{{{id=10|
+for n in [1..7]:
+    print Gap(2, 10^n),
+///
+2 8 35 205 1224 8169 58980
+}}}
+
+{{{id=15|
+for n in [1..7]:
+    print Gap(4, 10^n),
+///
+1 8 41 203 1216 8144 58622
+}}}
+
+{{{id=16|
+for n in [1..7]:
+    print Gap(6, 10^n),
+///
+0 15 74 411 2447 16386 117207
+}}}
+
+{{{id=17|
+for n in [1..7]:
+    print Gap(8, 10^n),
+///
+0 9 38 208 1260 8242 58595
+}}}
+
+{{{id=25|
+for k in [2,4,..,22]:
+    print "k=%s:"%k, [Gap(k,10^n) for n in [1..3]]
+///
+k=2: [2, 8, 35]
+k=4: [1, 8, 41]
+k=6: [0, 15, 74]
+k=8: [0, 9, 38]
+k=10: [0, 10, 51]
+k=12: [0, 13, 69]
+k=14: [0, 9, 48]
+k=16: [0, 8, 38]
+k=18: [0, 12, 73]
+k=20: [0, 8, 48]
+k=22: [0, 6, 39]
+}}}
+
+<ul>
+<li>go further (bigger $k$) -- is 6 the winner forever?</li>
+<li>go further -- bigger powers of 10.</li>
+<li>conjecture?</li>
+</ul>
