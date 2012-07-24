@@ -1,0 +1,115 @@
+
+Day 2: Multiplicative Parity
+
+<p>The proportion of even and add numbers is easy to understand: &nbsp;Half of numbers are <strong>even. </strong>&nbsp;Half of numbers are <strong>odd</strong>. &nbsp;&nbsp;</p>
+<p>Let's throw a wrench at the definition!</p>
+<p>A <strong>multiplicatively even</strong> number is one that can be expressed as a product of an even number of primes; a multiplicatively odd number is one that is a product of an odd number of primes. &nbsp;</p>
+<p>1 = multiplicatively even (product of 0 primes)</p>
+<p>2, or any prime number = multiplicatively odd (product of 1 prime)</p>
+<p>4=2*2, 6=2*3, 9=3*3 = all multiplicatively even</p>
+<p>8 = 2*2*2, 12=2*2*3 = multiplicatively odd</p>
+<p>What about... 24? &nbsp;30?&nbsp;</p>
+
+<p><strong>Natural Data-Gathering Question:</strong> how many numbers up to $X$ are multiplicatively odd? &nbsp;How many are multiplicatively even?</p>
+<p>Use Sage to compute in a naive way...</p>
+
+{{{id=1|
+def is_mult_even(n):
+    return sum(e for p, e in factor(n)) % 2 == 0
+///
+}}}
+
+{{{id=5|
+for n in [1..30]:
+    if is_mult_even(n): print n,
+///
+}}}
+
+{{{id=6|
+for n in [1..30]:
+    if not is_mult_even(n): print n,
+///
+}}}
+
+<p><em><strong>RACE!!</strong></em></p>
+
+{{{id=7|
+num_mult_even = 0
+num_mult_odd = 0
+for n in [1..100]:
+    if is_mult_even(n):
+        num_mult_even += 1  # this means: increment by 1
+    else:
+        num_mult_odd += 1
+    print "score up to %s: mult_even = %s,   mult_odd = %s"%(
+                 n, num_mult_even, num_mult_odd)
+///
+}}}
+
+{{{id=9|
+@interact
+def plot(X=[10,100,1000,10000]):
+    num_mult_even = 0
+    num_mult_odd = 0
+    v = []
+    for n in [1..X]:
+        if is_mult_even(n):
+            num_mult_even += 1  # this means: increment by 1
+        else:
+            num_mult_odd += 1
+        v.append((n, num_mult_odd - num_mult_even))
+    show(line(v), figsize=[6,3])
+///
+}}}
+
+{{{id=15|
+plot(1000)
+///
+}}}
+
+<p>(does this remind you of the stock market?)</p>
+
+{{{id=11|
+
+///
+}}}
+
+<p><strong>Conjecture: </strong><em>The random-looking walk above will never dip below the $x$-axis.</em></p>
+<p><em><br /></em></p>
+<p><strong>Theorem: </strong>This conjecture implies <em>the Riemann Hypothesis</em>&nbsp;(which I haven't stated yet, but will today, hopefully)! &nbsp; I.e., if this conjecture is true, then the Riemann Hypothesis is also true. &nbsp; &nbsp;Nobody has proved the other implication.</p>
+
+{{{id=14|
+plot(10^5)
+///
+}}}
+
+{{{id=10|
+
+///
+}}}
+
+{{{id=23|
+
+///
+}}}
+
+{{{id=22|
+
+///
+}}}
+
+{{{id=21|
+
+///
+}}}
+
+{{{id=20|
+
+///
+}}}
+
+<p>ALAS, Tanaka in 1980 (following Lehman) showed that this conjecture is FALSE. &nbsp;The line crosses the $x$-axis at $X=906,150,257$!</p>
+<p>&nbsp;</p>
+<p>So, the above conjecture implies everything, since it is false.&nbsp;</p>
+<p><strong>Moral:</strong> &nbsp;If you prove that some random statement implies a major unsolved problem, you <em>might</em> want to view that as evidence <em><strong>against</strong></em>&nbsp;your statement, not for it.&nbsp;</p>
+<p>On the other hand, if you prove that your statement is implied by a major unsolved problem, that is certainly evidence for your statement. &nbsp;</p>
