@@ -14,7 +14,7 @@ Course Goals
   
 NOTES
 =====
-  * You '''must''' be logged into [simuw.sagenb.org](http://simuw.sagenb.org) in order for clicking on the worksheet links below create a worksheet!
+  * You *must* be logged into [simuw.sagenb.org](http://simuw.sagenb.org) in order for clicking on the worksheet links below create a worksheet!
   * Clicking on the link creates a brand '''new''' worksheet.  If you then edit it, you'll find your modified worksheet in your [home screen](http://simuw.sagenb.org/home).
 
 Day 1: Prime Numbers
