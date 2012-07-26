@@ -37,3 +37,4 @@ Day 2: A Precise Statement of the Riemann Hypothesis
 Day 3: ???
 ----------
   * [Review (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/review.txt)
+  * [Tinkering with the staircase of primes (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/tinkering.txt)

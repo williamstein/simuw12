@@ -1,0 +1,107 @@
+Day 3: Tinkering with the staircase of primes
+
+<p><strong>Keep in mind our ultimate goal: </strong>Give an <em>exact mathematical formula</em>&nbsp;for staircase of primes $\pi(x)$:</p>
+<p>$$\pi(x) = \text{ some explicit infinite sum of mathematical functions }$$</p>
+<p>Riemann approached this problem using the idea of <em><strong>Fourier Series</strong></em>, which is hugely important in applied mathematics.</p>
+<p>To begin to work in this direction, we will tinker with $\pi(x)$ in a way that doesn't loose any essential information, but results in new objects that are more ammenable to the ideas of Fourier.</p>
+
+{{{id=3|
+plot(prime_pi, 0, 30, figsize=[7,2])
+///
+}}}
+
+<p>Build new <strong>log&nbsp;prime power</strong> staircase:</p>
+<ul>
+<li>Put a step at $x=1$ and steps at each prime power $x=p^n$, so there will be steps at $x=1,2,3,4,5,7,8,9,11,...$</li>
+<li>The height of the step at $x=1$ is $\log(2\pi)$</li>
+<li>The height of the step at $x=p^n$ is $\log(p)$.</li>
+</ul>
+<p>Our staircase will be steeper than before, but we loose no essential information in the sense that there are ways to efficiently transform facts about one staircase into facts about the other.</p>
+<p>Let's use Sage to draw this new staircase:</p>
+
+{{{id=6|
+@interact
+def f(B=30):
+    v = [(0,0)]
+    for x in prime_powers(B):
+        if x == 1:
+            h = log(2*pi)
+        else:
+            p = factor(x)[0][0]
+            h = log(p)
+        v.append( (x, v[-1][1]) )     # draw horiz line from previous point
+        v.append( (x, v[-1][1] + h) ) # draw vertical line up h
+    
+    line(v).show(figsize=[7,3]) # plot actual line
+///
+}}}
+
+{{{id=8|
+
+///
+}}}
+
+<p><strong>Exercise:</strong>&nbsp;Modify the code above to draw a staircase defined as follows:</p>
+<ul>
+<li>Put a step at $x=1$ and steps at each prime power $x=p^n$, so there will be steps at $x=1,2,3,4,5,7,8,9,11,...$</li>
+<li>The height of the step at $x=1$ and at each $x=p^n$ is $1$.</li>
+</ul>
+
+{{{id=1|
+
+///
+}}}
+
+{{{id=11|
+
+///
+}}}
+
+<p><strong>Exercise:</strong>&nbsp;Modify the code above to draw a staircase defined as follows:</p>
+<ul>
+<li>Put a step at each prime number $p$</li>
+<li>The height of the step at $p$ is $+1$ if $p$ is congruent to $1$ modulo $4$ and $-1$ if $p$ is congruent to $3$ modulo $4$.</li>
+</ul>
+
+{{{id=10|
+# hint: you can tell if p is 1 or 3 mod 4 as follows:
+7 % 4
+///
+}}}
+
+{{{id=13|
+13 % 4
+///
+}}}
+
+{{{id=16|
+
+///
+}}}
+
+{{{id=15|
+
+///
+}}}
+
+<p><strong>Question: </strong>Find a function that approximates the new log prime power staircase we defined above....</p>
+<p>and the best answer is: a 45 degree line! &nbsp;</p>
+
+{{{id=14|
+@interact
+def f(B=30):
+    v = [(0,0)]
+    for x in prime_powers(B):
+        if x == 1:
+            h = log(2*pi)
+        else:
+            p = factor(x)[0][0]
+            h = log(p)
+        v.append( (x, v[-1][1]) )     # draw horiz line from previous point
+        v.append( (x, v[-1][1] + h) ) # draw vertical line up h
+    
+    (line([v[0], (v[-1][0],v[-1][0])], color='red') + line(v)).show(figsize=[7,3])
+///
+}}}
+
+<p><strong>Conjecture (The Riemann Hypothesis -- second formulation): </strong>The line $y=x$ is a good approximation to the log prime power staircase (about half the digits match up).&nbsp;</p>
