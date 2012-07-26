@@ -1,0 +1,63 @@
+Day 3: Trigonometric Sums
+
+
+<p>We will use cosine everywhere hence, since the final formulas will look better. &nbsp;This is no major loss, since</p>
+<p>$$\cos(x-\pi/2) &nbsp;= \sin(x)$$</p>
+
+{{{id=4|
+plot(cos(x-pi/2), x, 0, 10) + plot(sin(x), x, 0, 10, figsize=[7,2])
+///
+}}}
+
+{{{id=5|
+bool(cos(x-pi/2) == sin(x))
+///
+}}}
+
+{{{id=2|
+
+///
+}}}
+
+<p><strong>Exercise</strong>: Play with a sum of three cosines</p>
+
+{{{id=1|
+@interact
+def f(a1=(1,4), theta1=(.1,20), 
+      a2=(1,4), theta2=(.1,20),
+      a3=(1,4), theta3=(.1,20)):
+    var('t')      
+    b1=0; b2=1; b3=2;
+    graphics_array([plot(a1*cos(b1+theta1*t)), plot(a2*cos(b2+theta2*t)), 
+              plot(a3*cos(b3+theta3*t))]).show(figsize=[7,2])
+    g = a1*cos(b1+theta1*t) + a2*cos(b2+theta2*t) + a3*cos(b3+theta3*t)
+    print g  
+    g.plot(color='red').show(figsize=[7,2])
+///
+}}}
+
+{{{id=8|
+
+///
+}}}
+
+<p>The <strong>Spectrum</strong>&nbsp;of $$F(t) = a_1 \cos(b_1 + \theta_1 t) + a_2 \cos(b_2 + \theta_2 t) + a_3 \cos(b_3 + \theta_3 t)$$</p>
+<p>is the set of frequencies, i.e., the three numbers $\theta_1, \theta_2, \theta_3$.</p>
+
+{{{id=10|
+plot(prime_pi, 0, 100, figsize=[7,2])
+///
+}}}
+
+<p><strong>The Spectrum and the Staircase of Primes</strong></p>
+<ul>
+<li>Is there a way to use Fourier Analysis to understand the staircase $\pi(x)$ of primes?</li>
+<li>Does the staircase have a spectrum?</li>
+<li>If the spectrum exists, can we compute it?</li>
+<li>Assuming the spectrum exists and is computable, will knowing the spectrum allow us to reproduce all the pertinent information about the distribution of prime numbers?</li>
+</ul>
+
+{{{id=6|
+
+///
+}}}
