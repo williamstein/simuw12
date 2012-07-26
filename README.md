@@ -41,3 +41,4 @@ Day 3: Fourier Analysis and Prime Numbers
   * [MP3 Files and Prime Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/fourier.txt)
   * [Trigonometric sums and the staircase of primes (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/trig_sums.txt)
   * [Handout some functions to differentiate to everybody](https://github.com/williamstein/simuw12/blob/master/day03/slope_handout.pdf?raw=true)
+  * [What can you do in Sage? (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/sage.txt)

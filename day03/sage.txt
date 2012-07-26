@@ -1,0 +1,307 @@
+
+{{{id=5|
+Graph
+///
+}}}
+
+{{{id=1|
+g = graphs.IcosahedralGraph()
+///
+}}}
+
+{{{id=2|
+g.plot3d()
+///
+}}}
+
+{{{id=3|
+f(x) = x^3 + x*sin(x^pi) - 1
+///
+}}}
+
+{{{id=7|
+f
+///
+x |--> x^3 + x*sin(x^pi) - 1
+}}}
+
+{{{id=8|
+f(2)
+///
+2*sin(2^pi) + 7
+}}}
+
+{{{id=9|
+f.derivative()
+///
+x |--> pi*x*x^(pi - 1)*cos(x^pi) + 3*x^2 + sin(x^pi)
+}}}
+
+{{{id=10|
+f(f)
+///
+(x^3 + x*sin(x^pi) - 1)^3 + (x^3 + x*sin(x^pi) - 1)*sin((x^3 + x*sin(x^pi) - 1)^pi) - 1
+}}}
+
+{{{id=11|
+f(f).expand()
+///
+x^9 + 3*x^7*sin(x^pi) + 3*x^5*sin(x^pi)^2 - 3*x^6 + x^3*sin(x^pi)^3 - 6*x^4*sin(x^pi) + x^3*sin((x^3 + x*sin(x^pi) - 1)^pi) - 3*x^2*sin(x^pi)^2 + 3*x^3 + x*sin((x^3 + x*sin(x^pi) - 1)^pi)*sin(x^pi) + 3*x*sin(x^pi) - sin((x^3 + x*sin(x^pi) - 1)^pi) - 2
+}}}
+
+{{{id=12|
+def f(n):
+    return n^2 + 1
+///
+}}}
+
+{{{id=13|
+f(f(3))
+///
+101
+}}}
+
+{{{id=14|
+f(f)
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_29.py", line 10, in <module>
+    exec compile(u'open("___code___.py","w").write("# -*- coding: utf-8 -*-\\n" + _support_.preparse_worksheet_cell(base64.b64decode("ZihmKQ=="),globals())+"\\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/tmp/tmpS6ctoE/___code___.py", line 2, in <module>
+    exec compile(u'f(f)' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/tmp/tmpRkJ9Tk/___code___.py", line 4, in f
+    return n**_sage_const_2  + _sage_const_1 
+  File "integer.pyx", line 1949, in sage.rings.integer.Integer.__pow__ (sage/rings/integer.c:13677)
+TypeError: unsupported operand type(s) for ** or pow(): 'function' and 'int'
+}}}
+
+{{{id=15|
+def g(n):
+    return f(f(n))
+///
+}}}
+
+{{{id=16|
+import functools
+///
+}}}
+
+{{{id=17|
+compose(f, f)(10)
+///
+10202
+}}}
+
+{{{id=19|
+G = PermutationGroup([[(1,2,3)],[(3,4)]]); G
+///
+Permutation Group with generators [(3,4), (1,2,3)]
+}}}
+
+{{{id=18|
+G.order()
+///
+24
+}}}
+
+{{{id=20|
+h = G.cayley_graph(); h
+///
+Digraph on 24 vertices
+}}}
+
+{{{id=23|
+G.multiplication_table()
+///
+*  a b c d e f g h i j k l m n o p q r s t u v w x
+ +------------------------------------------------
+a| a b c d e f g h i j k l m n o p q r s t u v w x
+b| b a d c f e h g j i l k n m p o r q t s v u x w
+c| c e a f b d i k g l h j o q m r n p u w s x t v
+d| d f b e a c j l h k g i p r n q m o v x t w s u
+e| e c f a d b k i l g j h q o r m p n w u x s v t
+f| f d e b c a l j k h i g r p q n o m x v w t u s
+g| g h m n s t a b o p u v c d i j w x e f k l q r
+h| h g n m t s b a p o v u d c j i x w f e l k r q
+i| i k o q u w c e m r s x a f g l t v b d h j n p
+j| j l p r v x d f n q t w b e h k s u a c g i m o
+k| k i q o w u e c r m x s f a l g v t d b j h p n
+l| l j r p x v f d q n w t e b k h u s c a i g o m
+m| m s g t h n o u a v b p i w c x d j k q e r f l
+n| n t h s g m p v b u a o j x d w c i l r f q e k
+o| o u i w k q m s c x e r g t a v f l h n b p d j
+p| p v j x l r n t d w f q h s b u e k g m a o c i
+q| q w k u i o r x e s c m l v f t a g j p d n b h
+r| r x l v j p q w f t d n k u e s b h i o c m a g
+s| s m t g n h u o v a p b w i x c j d q k r e l f
+t| t n s h m g v p u b o a x j w d i c r l q f k e
+u| u o w i q k s m x c r e t g v a l f n h p b j d
+v| v p x j r l t n w d q f s h u b k e m g o a i c
+w| w q u k o i x r s e m c v l t f g a p j n d h b
+x| x r v l p j w q t f n d u k s e h b o i m c g a
+}}}
+
+{{{id=21|
+h.plot3d(viewer='tachyon')
+///
+}}}
+
+{{{id=24|
+f(x) = sin(x*cos(x+1))+e^x
+///
+}}}
+
+{{{id=22|
+f.taylor(x, 2, 5)
+///
+x |--> -1/120*(x - 2)^5*(32*sin(3)^5*cos(2*cos(3)) - cos(2*cos(3))*cos(3)^5 + 10*(sin(3)*cos(2*cos(3)) + 2*sin(2*cos(3)))*cos(3)^4 - 160*sin(2*cos(3))*sin(3)^4 - 10*(4*sin(3)^2*cos(2*cos(3)) + 10*sin(2*cos(3))*sin(3) - 3*cos(2*cos(3)))*cos(3)^3 - 40*sin(3)^3*cos(2*cos(3)) + 10*(8*sin(3)^3*cos(2*cos(3)) + 12*sin(2*cos(3))*sin(3)^2 + 14*sin(3)*cos(2*cos(3)) + 7*sin(2*cos(3)))*cos(3)^2 - 80*sin(2*cos(3))*sin(3)^2 - 5*(16*sin(3)^4*cos(2*cos(3)) - 16*sin(2*cos(3))*sin(3)^3 + 76*sin(3)^2*cos(2*cos(3)) - 4*sin(2*cos(3))*sin(3) + cos(2*cos(3)))*cos(3) + 2*sin(3)*cos(2*cos(3)) - e^2) + 1/24*(x - 2)^4*(16*sin(2*cos(3))*sin(3)^4 + sin(2*cos(3))*cos(3)^4 - 4*(2*sin(2*cos(3))*sin(3) - 3*cos(2*cos(3)))*cos(3)^3 + 48*sin(3)^3*cos(2*cos(3)) + 12*(2*sin(2*cos(3))*sin(3)^2 - 3*sin(3)*cos(2*cos(3)))*cos(3)^2 + 4*sin(2*cos(3))*sin(3)^2 - 2*(16*sin(2*cos(3))*sin(3)^3 + 28*sin(2*cos(3))*sin(3) - cos(2*cos(3)))*cos(3) + 4*sin(3)*cos(2*cos(3)) + e^2) + 1/6*(x - 2)^3*(8*sin(3)^3*cos(2*cos(3)) - cos(2*cos(3))*cos(3)^3 + 6*(sin(3)*cos(2*cos(3)) + sin(2*cos(3)))*cos(3)^2 - 12*sin(2*cos(3))*sin(3)^2 - 3*(4*sin(3)^2*cos(2*cos(3)) + 2*sin(2*cos(3))*sin(3) + cos(2*cos(3)))*cos(3) + 2*sin(3)*cos(2*cos(3)) + e^2) - 1/2*(x - 2)^2*(4*sin(2*cos(3))*sin(3)^2 + sin(2*cos(3))*cos(3)^2 - 2*(2*sin(2*cos(3))*sin(3) - cos(2*cos(3)))*cos(3) + 2*sin(3)*cos(2*cos(3)) - e^2) - (x - 2)*(2*sin(3)*cos(2*cos(3)) - cos(2*cos(3))*cos(3) - e^2) + e^2 + sin(2*cos(3))
+}}}
+
+{{{id=26|
+R.<t> = IntegerModRing(7)[[]]
+R
+///
+Power Series Ring in t over Ring of integers modulo 7
+}}}
+
+{{{id=25|
+PowerSeriesRing(QQ, 't')
+///
+Power Series Ring in t over Rational Field
+}}}
+
+{{{id=27|
+f = 1/(1-t); f
+///
+1 + t + t^2 + t^3 + t^4 + t^5 + t^6 + t^7 + t^8 + t^9 + t^10 + t^11 + t^12 + t^13 + t^14 + t^15 + t^16 + t^17 + t^18 + t^19 + O(t^20)
+}}}
+
+{{{id=28|
+f^10
+///
+1 + 3*t + 6*t^2 + 3*t^3 + t^4 + 2*t^7 + 6*t^8 + 5*t^9 + 6*t^10 + 2*t^11 + 3*t^14 + 2*t^15 + 4*t^16 + 2*t^17 + 3*t^18 + O(t^20)
+}}}
+
+{{{id=29|
+import scipy.stats
+///
+}}}
+
+{{{id=30|
+scipy.stats
+///
+<module 'scipy.stats' from '/sagenb/sage_install/sage-5.2.rc0/local/lib/python2.7/site-packages/scipy/stats/__init__.pyc'>
+}}}
+
+{{{id=37|
+v = [(p, prime_pi(p)) for p in prime_range(200)]
+v
+///
+[(2, 1), (3, 2), (5, 3), (7, 4), (11, 5), (13, 6), (17, 7), (19, 8), (23, 9), (29, 10), (31, 11), (37, 12), (41, 13), (43, 14), (47, 15), (53, 16), (59, 17), (61, 18), (67, 19), (71, 20), (73, 21), (79, 22), (83, 23), (89, 24), (97, 25), (101, 26), (103, 27), (107, 28), (109, 29), (113, 30), (127, 31), (131, 32), (137, 33), (139, 34), (149, 35), (151, 36), (157, 37), (163, 38), (167, 39), (173, 40), (179, 41), (181, 42), (191, 43), (193, 44), (197, 45), (199, 46)]
+}}}
+
+{{{id=36|
+plot(spline(v), 2, 200, figsize=[7,2]) + plot(prime_pi, 2, 200, color='red')
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=38|
+search_doc('least squares')
+///
+<html><font color="black"><h2>Search Documentation: "least squares"</h2></font><font color="darkpurple"><ol><li><a href="/doc/live/numerical_sage/scipy.html" target="_blank"><tt>numerical_sage/scipy.html</tt></a>
+</ol></font></html>
+}}}
+
+{{{id=39|
+import scipy.optimize
+///
+}}}
+
+{{{id=40|
+scipy.optimize.leastsq
+///
+}}}
+
+{{{id=31|
+v = [(i + sin(i)/2, i+cos(i^2)) for i in range(10)]
+s = spline(v)
+///
+}}}
+
+{{{id=32|
+s
+///
+[(0, 1), (1/2*sin(1) + 1, cos(1) + 1), (1/2*sin(2) + 2, cos(4) + 2), (1/2*sin(3) + 3, cos(9) + 3), (1/2*sin(4) + 4, cos(16) + 4), (1/2*sin(5) + 5, cos(25) + 5), (1/2*sin(6) + 6, cos(36) + 6), (1/2*sin(7) + 7, cos(49) + 7), (1/2*sin(8) + 8, cos(64) + 8), (1/2*sin(9) + 9, cos(81) + 9)]
+}}}
+
+{{{id=33|
+s(3)
+///
+1.9905656094639754
+}}}
+
+{{{id=34|
+plot(s, 0, 10)
+///
+verbose 0 (2392: plot.py, generate_plot_points) WARNING: When plotting, failed to evaluate function at 17 points.
+verbose 0 (2392: plot.py, generate_plot_points) Last error message: ''
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=35|
+R.<i,j,k> = QuaternionAlgebra(-1,-1); R
+///
+Quaternion Algebra (-1, -1) with base ring Rational Field
+}}}
+
+{{{id=41|
+i^2
+///
+-1
+}}}
+
+{{{id=42|
+z = (1/2*i + 2/3*j - 458/495+ k); z
+///
+-458/495 + 1/2*i + 2/3*j + k
+}}}
+
+{{{id=43|
+E = EllipticCurve([2,3]); E
+///
+Elliptic Curve defined by y^2 = x^3 + 2*x + 3 over Rational Field
+}}}
+
+{{{id=48|
+EllipticCurve(
+///
+}}}
+
+{{{id=44|
+P = E.gens()[0]; P
+///
+(3 : 6 : 1)
+}}}
+
+{{{id=47|
+P+P+P+P+P+P
+///
+(43466578355931661967401/2373462876777769904400 : 9091376611876411730790994855560149/115630835848055979803217611928000 : 1)
+}}}
+
+{{{id=45|
+plot(E, figsize=3)
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=46|
+
+///
+}}}
