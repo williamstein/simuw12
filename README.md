@@ -34,3 +34,6 @@ Day 2: A Precise Statement of the Riemann Hypothesis
   * [What Proportion of Numbers are Prime? (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day02/prime_proportion.txt)
   * [Counting Primes - Riemann Hypothesis (first formulation) (click to create worksheet)] (http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day02/rh1.txt)
 
+Day 3: ???
+----------
+  * [Review](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/review.txt)

@@ -1,0 +1,90 @@
+
+Day 3: Review
+
+<p>The <em><strong>Riemann Hypothesis</strong></em> is a conjecture that concerns the function</p>
+<p>$$\pi(x) = \#\{p \leq x : p\text{ is prime }\}$$</p>
+
+{{{id=4|
+plot(prime_pi, 0, 1000, figsize=[7,2])
+///
+}}}
+
+<p>It asserts that&nbsp;</p>
+<p>$${\rm Li}(x) = \text{ area under the plot of $1/\log(t)$ from $2$ to $x$ }$$</p>
+<p>is a <strong>good approximation </strong>to $\pi(x)$.</p>
+<p><strong>Conjecture (The Riemann Hypothesis):</strong> $|{\rm Li}(x) - \pi(x)|\leq \sqrt{x}\cdot \log(x)$.</p>
+
+{{{id=6|
+var('t')
+plot(1/log(t), 2, 1000, fill=True).show(figsize=[7,2])
+///
+}}}
+
+{{{id=3|
+plot(prime_pi, 0, 1000) + plot(Li, 0, 1000, figsize=[7,2], color='red')
+///
+}}}
+
+{{{id=9|
+@interact
+def f(B=(10^2,10^6)):
+    plot([-sqrt(x), sqrt(x), lambda t: prime_pi(t) - Li(t)], 
+          0, B).show(figsize=[7,2])
+///
+}}}
+
+{{{id=2|
+prime_pi(10^7), Li(10^7)
+///
+}}}
+
+{{{id=8|
+
+///
+}}}
+
+<p><strong>The Prime Number <span style="text-decoration: underline;">Theorem</span>: &nbsp;</strong>The function $x/(\log(x)-1)$ is a <em>decent</em> approximation to $\pi(x)$.</p>
+<p>By "decent" we mean that for any $n$, there is a point after which the first $n$ digits of $x/(\log(x)-1)$ and $\pi(x)$ are the same. &nbsp;But there is no guarantee about how far we must go to see this.</p>
+
+{{{id=13|
+prime_pi(10^7), Li(10^7), N(10^7/(log(10^7)-1))
+///
+}}}
+
+{{{id=1|
+@interact
+def f(B=range_slider(5,10^5)):
+    (plot(prime_pi, B[0],B[1]) + plot(Li, B[0], B[1], color='red') +
+       plot(x/(log(x)-1), B[0], B[1],color='green') ).show(figsize=[7,3], frame=True)
+///
+}}}
+
+{{{id=14|
+
+///
+}}}
+
+<p>We also talked about some solved and unsolved problems involving prime numbers. &nbsp;For example:</p>
+<ul>
+<li>are there infinitely primes that are one more than a square? (unknown!)</li>
+<li>are there infinitely many twin primes? (unknown!)</li>
+</ul>
+<p>But using Sage we could easily get <strong>data</strong> about these questions:</p>
+
+{{{id=11|
+print "Primes one more than a square: ",
+for n in [1..100]:
+    if (n^2+1).is_pseudoprime():
+        print n^2+1,
+///
+}}}
+
+{{{id=16|
+print "Twin primes: ",
+for p in prime_range(500):
+    if (p+2).is_pseudoprime():
+        print (p,p+2),
+///
+}}}
+
+<p>And, you asked your own question and gathered data about it.</p>
