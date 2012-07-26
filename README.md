@@ -39,3 +39,4 @@ Day 3: ???
   * [Review (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/review.txt)
   * [Tinkering with the staircase of primes (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/tinkering.txt)
   * [MP3 Files and Prime Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/fourier.txt)
+  * [Trigonometric sums and the staircase of primes (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/trig_sums.txt)
