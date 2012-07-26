@@ -1,0 +1,97 @@
+Day 3: MP3 Files and Prime Numbers
+
+<p><strong>Sound:</strong></p>
+<ul>
+<li>vibrations of air molecules, traveling at 768 miles per hour</li>
+<li>vibrations = fluctuations of pressure: picture them by a graph where the horizontal axis is time and the vertical axis is pressure at that time</li>
+</ul>
+<p>purest sound = a single sustained note = looks like graph of sine function:</p>
+
+{{{id=1|
+plot(3*sin(2*2*pi*x), (x,0, 3), figsize=[7,3])
+///
+}}}
+
+<ul>
+<li>height of the peaks: <strong>amplitude</strong> = loudness of the sound <span style="color: #c0c0c0;">(=3)</span></li>
+<li>number of peaks per second: <strong>frequency</strong> = pitch of the sound <span style="color: #c0c0c0;">(=2)</span></li>
+</ul>
+
+<p><strong>Exericse:</strong>&nbsp;Draw the plot above, but with a few different choices of amplitude and frequency.</p>
+
+{{{id=12|
+
+///
+}}}
+
+{{{id=16|
+
+///
+}}}
+
+{{{id=15|
+
+///
+}}}
+
+<p>next simple example of sound: play two different pure notes together at the same time:</p>
+
+{{{id=8|
+show(plot(3*sin(2*2*pi*x), (x,0, 3)) + plot(2*sin(3*2*pi*x),(x,0,3),color='red'),
+      figsize=[7,3])
+///
+}}}
+
+<p>Actual sound would be the <strong>sum</strong>&nbsp;of these two functions:</p>
+
+{{{id=4|
+plot(3*sin(2*2*pi*x) + 2*sin(3*2*pi*x), (x,0, 3), figsize=[7,3])
+///
+}}}
+
+<p>Above two pure sounds were in <strong>phase</strong>, but we could also start the second sound a little later, i.e., with a different <strong>phase</strong>:</p>
+
+{{{id=10|
+plot(3*sin(2*2*pi*x) + 2*sin(3*2*pi*(x-1/4)), (x,0, 3), figsize=[7,3])
+///
+}}}
+
+<p>To reconstruct the above graph you need:</p>
+<ul>
+<li>the two <strong>frequencies</strong></li>
+<li>the two <strong>amplitudes</strong></li>
+<li>the <strong>phase</strong> between them</li>
+</ul>
+<p>That's exactly five numbers.</p>
+<p>In contrast, audio compact discs would store this sound by sampling it 44,100 times per second and storing all the sample pressures:</p>
+
+{{{id=20|
+plot(3*sin(2*2*pi*x) + 2*sin(3*2*pi*(x-1/4)), (x,0, 3), linestyle=":", figsize=[7,3])
+///
+}}}
+
+<p>That would be 3 x 44,100 = 132,300 numbers!</p>
+
+{{{id=18|
+
+///
+}}}
+
+<p>This idea: to analyze sounds by finding their underlying structure -- as a sum of pure sounds given by their frequency, amplitude, and phase -- is called <strong>Fourier Analysis</strong>.&nbsp;</p>
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/a/aa/Fourier2.jpg" alt="" width="180" /></p>
+
+<p>MP3 Music: lossy compression of music files by a factor of 11 -- this had a <strong>huge</strong> impact 15 years ago...</p>
+<ul>
+<li>An MP3 file consists of various header information and the actual music stored as a list of frequencies, amplitudes, and phases, just as above.</li>
+<li>There are incredibly efficient computer programs (e.g., the "fast Fourier transform") for writing a sound in terms of its pure components.</li>
+<li>MP3 encoders users sophisticated <em>"psychoacoustic models"</em>&nbsp;to effeciently decide how to turn a raw sound wave into a list of frequences/amplitudes/etc. &nbsp;(Different programs do this differently, and they do it in a way that throws away a lot of inessential information.)</li>
+</ul>
+
+{{{id=25|
+
+///
+}}}
+
+<p><strong>Summary: </strong>Fourier Analysis is a technique to get at underlying hidden structure in a sound recording. &nbsp; It is very useful. &nbsp;You all use it every day.</p>
+<p>&nbsp;</p>
+<p><strong>Question: </strong>Can we somehow use Fourier Analysis to get at underlying hidden structure in the function $\pi(x)$, i.e., in the prime numbers, which are the foundation of arithmetic?</p>
