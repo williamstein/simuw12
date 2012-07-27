@@ -1,0 +1,135 @@
+Day 4: A Crash Course in Distributions
+
+<p>What is the derivative of a step function?</p>
+
+{{{id=1|
+line([(0,0), (1,0), (1,1), (3,1)], figsize=[6,2], thickness=3)
+///
+}}}
+
+<p>It <strong><em>is</em></strong> defined. &nbsp;It is a&nbsp;<em><strong>generalized function </strong></em>(or <strong><em>distribution</em></strong>). &nbsp; Systematically developing the theory of such objects won Laurent Schwartz the Fields Medal.</p>
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/5/5c/LaurentSchwartz.jpg" alt="" width="152" height="184" /></p>
+
+<p>We graphically picture the derivative using a plot with a spike (think of it as going to infinity):</p>
+
+{{{id=3|
+line([(0,0), (1,0), (1,1), (1,0), (3,0)], color='red', figsize=[6,2], thickness=3)
+///
+}}}
+
+<p>The particular distribution illustrated above is called the <em><strong>Dirac $\delta$-"function"</strong></em>. &nbsp; This is not a bona fide function, but rather a distribution.</p>
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/c/cf/Dirac_4.jpg" alt="" width="130" /></p>
+
+<p><strong>What's the difference?</strong></p>
+<p><strong>An honest (integrable) function of a real variable $f(t)$ has two features:</strong></p>
+<ol>
+<li><strong>It has values.</strong>&nbsp;For any real number $t$, the number $f(t)$ is defined as is a real number.</li>
+<li><strong>It has areas under its graph.</strong>&nbsp;Given any interval $[a,b]$ of real numbers, the area $\int_{a}^b f(t) dt$ is defined:</li>
+</ol>
+
+{{{id=11|
+var('x')
+plot(exp(-x^2)-1/8,(x,-10,10),fill=True, figsize=[6,1.3], gridlines=True)
+///
+}}}
+
+<p><strong>NOTE: </strong>This area is signed, so the middle part is positive and the end parts are <strong>negative.</strong></p>
+
+{{{id=10|
+integral_numerical(exp(-x^2)-1/18, -10,10)[0]     # the SIGNED area
+///
+}}}
+
+<p>In contrast, a <strong>distribution $D(t)$</strong>:</p>
+<ol>
+<li><strong>may not have "definite values" </strong>at all real numbers (so maybe $f(t)$ is not specified), BUT</li>
+<li><strong>it has well-defined areas under portions of its "graph".</strong>&nbsp; In particular, the (signed) area under the graph from $a$ to $b$ <em><strong>is</strong></em>&nbsp;defined $$\int_{a}^b D(t) dt$$</li>
+</ol>
+
+<p>Summary:</p>
+<ul>
+<li>(integral) functions have both: values $f(t)$ and an integral $\int_{a}^b f(t)dt$;</li>
+<li>distributions $D(t)$ may have only the integral $\int_{a}^b D(t)dt$.</li>
+</ul>
+<p>A <strong>distribution</strong> is a thus a rule $D(t)$ that associates to any interval $[a,b]$ a number $\int_{a}^b D(t)dt$, which behaves like a usual integral, in particular for $a\leq b \leq c$:</p>
+<p>$$\int_{a}^c D(t)dt = \int_{a}^b D(t)dt + \int_{b}^c D(t) dt.$$</p>
+<p>Also, $$\int_a^c D_1(t) + D_2(t)dt = \int_a^c D_1(t)dt + \int_a^c D_2(t)dt.$$</p>
+<p>Thus integral functions define distributions, but there are many more distributions.</p>
+
+{{{id=8|
+
+///
+}}}
+
+<p><strong>DEFINITION: The Dirac $\delta$ Distribution:</strong></p>
+<ul>
+<li>If $a$ and $b$ have the same sign (both positive or both negative), then $\int_{a}^b \delta = 0$</li>
+<li>If $a$ is negative and $b$ is positive, then $$\int_a^b \delta = 1$$<br /><br /><strong></strong></li>
+</ul>
+
+{{{id=6|
+line([(-5,0), (0,0), (0,1), (0,0), (5,0)], color='red', figsize=[6,1.5], thickness=3, frame=True)
+///
+}}}
+
+<p>We say $\delta$ has <strong><em>support</em></strong>&nbsp;at $0$.&nbsp;</p>
+<p>More generally, for any real number $x$, let $\delta_x$ be the Dirac $\delta$-function with support at $x$. &nbsp;Here is how we might picture $\delta_2$:</p>
+
+{{{id=18|
+line([(-5,0), (2,0), (2,1), (2,0), (5,0)], color='red', figsize=[6,1.5], thickness=3, frame=True)
+///
+}}}
+
+<p><strong>Exercises:</strong></p>
+<ol>
+<li>What is $\int_1^5 \delta_2$?<strong></strong><br /><br /></li>
+<li>What is $\int_{-10}^{10} \delta$?<br /><br /></li>
+<li>What is $\int_1^5 (\delta_2 + \delta_6)$?<br /><br /></li>
+<li>What is $\int_{-20}^{20} (\delta_2 + \delta_6 + \delta_{30})$?<br /><br /></li>
+</ol>
+
+{{{id=22|
+
+///
+}}}
+
+<p><strong>Discuss (whiteboard/audience) why the following makes sense in terms of Riemann sums:</strong></p>
+<p>If $f(t)$ is an (integrable) function and $(a,b)$ is an interval, then&nbsp;</p>
+<p>$$\int_{a}^{b} f(t) \delta_x(t) = \begin{cases} f(x) &amp; \text{ if $x\in(a,b)$}\\0&amp;\text{otherwise}\end{cases}$$</p>
+
+{{{id=24|
+
+///
+}}}
+
+<p><strong>Exercise:</strong></p>
+<ol>
+<li>What is $\int_2^5 \sin(t)\delta_{\pi} dt$?<strong></strong></li>
+<li>What is $\int_2^5 \cos(t)\delta_{\pi} dt$?</li>
+<li>What is $\int_{-\infty}^{\infty} 3\delta_{1} dt$?</li>
+<li>What is $\int_{-\infty}^{\infty} (\delta_{1}+\delta_2 + \delta_3) dt$?</li>
+<li>What is $\int_{1,10} (\sin(t)\delta_\pi + \cos(t)\delta_{\pi/2}) dt$?</li>
+</ol>
+
+{{{id=26|
+
+///
+}}}
+
+<p>And finally...</p>
+<p>The derivative of the staircase function below has derivative $\delta_0 + 2\delta_1$. &nbsp;</p>
+
+{{{id=20|
+line([(-3,0),(0,0),(0,1),(1,1),(1,3),(3,3)], thickness=3, aspect_ratio=1, 
+                        figsize=4, gridlines=true)
+///
+}}}
+
+<p>Justification: Notice that $\int_{-3}^x \delta_0 + 2\delta_1 dt =$ the above pictured staircase function evaluated at $x$. &nbsp; &nbsp;</p>
+<p>&nbsp;</p>
+<p>The fundamental theorem of calculus: that integrating the derivative gives the function, e.g., $\int f'(t)dt = f(t)$, for appropriate choice of constant.</p>
+
+{{{id=28|
+
+///
+}}}
