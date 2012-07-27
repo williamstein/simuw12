@@ -46,3 +46,4 @@ Day 3: Fourier Analysis and Prime Numbers
 Day 4: ???
 ----------
   * [A crash course in distributions (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/distributions.txt)
+  * [A crash course in distributions (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/fourier_transform.txt)

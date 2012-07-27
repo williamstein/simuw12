@@ -1,0 +1,74 @@
+Day 4: The Fourier Transform
+
+{{{id=1|
+f(t) = 5*cos(-t-2) + 2*cos(t/2+1) + 3*cos(2*t+4)
+plot(f, -15,15, figsize=[7,2])
+///
+}}}
+
+<p><strong>Fourier Transform:</strong> &nbsp;The operation that starts with a graph (like the picture above) and goes to its spectral picture that records the frequences, amplitudes, and phases of the pure waves.</p>
+<p>It takes the above plot and produces the frequencies -1, 1/2, 2, the amplitudes 5,2,3, and the phases -2, 1, 4. &nbsp;</p>
+<p>The Fourier transform is typically viewed as a complex valued function with domain the set of frequencies, whose values that encode the amplitude and phase for the part of the sum having that frequency.</p>
+<p>$$\text{Fourier Transform ( frequency ) } = \text{ amplitude and phase for that frequency }$$</p>
+
+{{{id=4|
+
+///
+}}}
+
+<p>A function is <strong>even</strong>&nbsp;if its graph is symmetric about the $y$-axis, i.e., $f(-t) = f(t)$. &nbsp;E.g., cosine is an even function:</p>
+
+{{{id=2|
+plot(cos, -4,4, figsize=[7,2])
+///
+}}}
+
+<p>We will only consider Fourier transforms of even functions. &nbsp; We extend the staircase of primes to an even function by defining $\pi(-x) = \pi(x)$:</p>
+
+{{{id=8|
+plot(lambda x: prime_pi(abs(x)), -20, 20, figsize=[7,2])
+///
+}}}
+
+<p>Let $f(t)$ be an even integrable function or <em><strong>distribution</strong></em>, and let $\hat{f}(\theta)$ denote its Fourier transform, i.e., the function with $$\hat{f}(\theta) = \text{amplitude for frequency $\theta$}$$ &nbsp;</p>
+<p>(the phase is always 0 by our hypothesis)</p>
+<p>Then,</p>
+<p><strong>Theorem (Fourier Analysis):</strong> If $\int_{-\infty}^{+\infty} |f(t)|dt$ exists (which is a very strong condition!), then $$\hat{f}(\theta) = \int_{-\infty}^{+\infty} f(t) \cos(-\theta t) dt.$$</p>
+<p>&nbsp;</p>
+<p><strong>Theorem (Fourier Synthesis): </strong>Let $\hat{f}(\theta)$ be as above and suppose $f(t)$ is a function (not a distribution). &nbsp;Then $$f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \hat{f}(\theta) \cos(\theta t) d\theta.$$</p>
+
+{{{id=22|
+
+///
+}}}
+
+<p><strong>Exercise: &nbsp; </strong>Do you think&nbsp;$\int_{-\infty}^{\infty} |\cos(t)|dt$ exists?</p>
+<p><strong>Exercise:</strong>&nbsp; Sketch (on paper, or in your head) some examples of functions $f(t)$ such that $\int_{-\infty}^{\infty} |f(t)|dt$ exists.&nbsp;&nbsp;</p>
+<p><strong>Exercise: &nbsp;</strong>Give a plausibility argument for why&nbsp;$\int_{-\infty}^{\infty} |f(t)|dt$ exists implies that $\int_{-\infty}^{+\infty} f(t) \cos(-\theta t) dt$ also exists (in terms of thinking about signed area between a graph and the x-axis).</p>
+
+{{{id=9|
+
+///
+}}}
+
+<p>Of course,&nbsp;$\int_{-\infty}^{+\infty} |\pi(t)|dt$ does not exist, since the area under the staircase of primes is infinite. &nbsp;We will manipulate $\pi$ to obtain a function that we can apply Fourier transform to.</p>
+<p>But first, let's figure out what the Fourier transform of&nbsp;Dirac's delta is, which is clearly a distribution that satisfies our hypothesis.</p>
+<p>We have (from above) that $$\hat{f}(\theta) = \int_{-\infty}^{\infty} \delta_0(t) \cos(-\theta t) dt = \cos(0) = 1.$$</p>
+<p>What about $\delta_x(t)$ for some other real number $x\neq 0$? &nbsp;Applying the theorem doesn't make sense, because $\delta_x$ is not even. &nbsp;However, $d_x(t) = \frac{1}{2}(\delta_{-x}(t) + \delta_x(t))$ is even. We have</p>
+<p>$$\hat{d_x}(\theta) = \int_{-\infty}^{\infty} \frac{1}{2} (\delta_{-x}(t) + \delta_{x}(t))\cos(-\theta t) dt = \frac{\cos(\theta{}x) + \cos(-\theta{}x)}{2} = \cos(\theta{}x).$$</p>
+<p>In words: "for any frequency $\theta$, the amount of $\cos(\theta t)$ you need to build up $d_x(t)$ is $\cos(\theta{} x)$.</p>
+
+{{{id=21|
+
+///
+}}}
+
+{{{id=14|
+
+///
+}}}
+
+{{{id=15|
+
+///
+}}}
