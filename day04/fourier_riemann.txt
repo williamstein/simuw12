@@ -1,0 +1,76 @@
+Day 4: Fourier Transform and the Riemann Spectrum
+
+<p>In the previous worksheet we introduced two somewhat arbitrary trig sums. &nbsp;</p>
+<p>One involved the prime powers, and we observed that when plotted it had spikes at a particular set of real numbers that we call <strong>the spectrum $\theta_i$ of the prime numbers</strong>. &nbsp;</p>
+<p>The other involved this spectrum, and when plotted we observed that it had spikes at the prime powers.&nbsp;</p>
+<p>But... what does any of this have to do with $\pi(x)$ or Fourier Analysis!? &nbsp;</p>
+<p>First, remember when we tinkered with the staircase of primes and got something that looked like $y=x$?</p>
+<p>Build new <strong>log&nbsp;prime power</strong> staircase function $\psi(x)$:</p>
+<ul>
+<li>Put a step at $x=1$ and steps at each prime power $x=p^n$, so there will be steps at $x=1,2,3,4,5,7,8,9,11,...$</li>
+<li>The height of the step at $x=1$ is $\log(2\pi)$</li>
+<li>The height of the step at $x=p^n$ is $\log(p)$.</li>
+</ul>
+<p>Our staircase will be steeper than before, but we loose no essential information in the sense that there are ways to efficiently transform facts about one staircase into facts about the other.</p>
+
+{{{id=2|
+@interact
+def f(B=1000):
+    v = [(0,0)]
+    for x in prime_powers(B):
+        if x == 1:
+            h = log(2*pi)
+        else:
+            p = factor(x)[0][0]
+            h = log(p)
+        v.append( (x, v[-1][1]) )     # draw horiz line from previous point
+        v.append( (x, v[-1][1] + h) ) # draw vertical line up h
+    
+    line(v).show(figsize=[7,2], frame=True)
+///
+}}}
+
+<p>The above 45-degree staircase is called $\psi(x)$. &nbsp;Let</p>
+<p>$$ \Phi(t) = e^{-t/2}\psi'(e^t).$$</p>
+<p>We have thus taken $\psi$ and:</p>
+<ol>
+<li>rescaled the input it by replacing $x$ by $e^t$ (so the spikes are at the logs of prime powers instead of at prime powers)</li>
+<li>taken the <strong><em>derivative</em></strong>&nbsp;of the resulting step function, which is a <strong>distribution</strong>&nbsp;(a sum of Dirac delta, and not a function)</li>
+<li>scaled the result vertically by multiplying by $e^{-t/2}$.</li>
+</ol>
+<p>Also, to obtain an even distribution, we let $\Phi(-t) = \Phi(t)$. &nbsp; &nbsp;</p>
+<p>The resulting object $\Phi(t)$ is symmetric about the $y$-axis, and is a sum of Dirac delta's, one at each $\pm\log(p^n)$, for $p^n$ any prime power. &nbsp; In terms of the distribution $d_x(t) = (\delta_x(t)+\delta_{-x}(t))/2$ that we defined above, we finally have</p>
+<p>$$\Phi(t) = 2 \sum \frac{\log(p)}{&nbsp;p^{n/2}} d_{\log(p^n)}(t).$$</p>
+
+<p>Recall also that the Fourier transform of $d_{x}(t)$ is $\cos(t\theta)$.</p>
+<p>Thus the Fourier transform of $\Phi(t)$ is... doesn't make sense necessarily, because of the hypothesis of square integrality. &nbsp;However, we can truncate $\Phi(t)$ and proceed anyways. Let</p>
+<p>$$\Phi_C(t) =&nbsp;2 \sum_{p^n&lt; C} \frac{\log(p)}{&nbsp;p^{n/2}} d_{\log(p^n)}(t).$$</p>
+<p>Then</p>
+<p>$$\hat{\Phi}_{\leq C}(\theta) = 2\sum_{p^n&lt;C} &nbsp;\frac{\log(p)}{p^{n/2}} \cos(\log(p^n)\theta).$$</p>
+<p>Heh, that is (up to the factor of 2) <strong><em>exactly</em></strong>&nbsp;the sum we considered before. &nbsp;</p>
+<p>The Spectrum of the prime numbers is literally the spectrum -- in the sense of Fourier analysis -- of a distribution that we naturally obtained from the staircase $\pi(x)$ of prime numbers. &nbsp;More precisely, we took the log-prime-power staircase, scaled it, took the derivative, scaled that, then took the Fourier transform, and (convergence issues aside) the result is a distribution with spikes exactly at a list of mysterious numbers that somehow govern the distribution of the primes.&nbsp;</p>
+
+{{{id=1|
+@interact
+def f(B=(40,(1..250))):
+    sum(line([(z,1),(z,-.4)],thickness=.5) for z in zeta_zeros()[:B]).show(
+       figsize=[8,2], xmin=-1, ymin=-3, ymax=3)
+///
+}}}
+
+<p><em><strong>This</strong></em> is what the prime numbers look like to some people.</p>
+
+{{{id=10|
+
+///
+}}}
+
+{{{id=9|
+
+///
+}}}
+
+{{{id=6|
+
+///
+}}}

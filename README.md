@@ -43,8 +43,11 @@ Day 3: Fourier Analysis and Prime Numbers
   * [Handout some functions to differentiate to everybody](https://github.com/williamstein/simuw12/blob/master/day03/slope_handout.pdf?raw=true)
   * [What can you do in Sage? (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day03/sage.txt)
 
-Day 4: ???
-----------
+Day 4: The Riemann Spectrum
+---------------------------
   * [A Crash Course in Distributions (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/distributions.txt)
   * [Fourier Transform (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/fourier_transform.txt)
   * [The Spectrum of the Prime Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/spectrum_of_primes.txt)
+  * [Fourier Transform and the Riemann Spectrum (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/fourier_riemann.txt)
+
+
