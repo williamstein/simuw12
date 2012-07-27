@@ -1,0 +1,331 @@
+Day 4: Building pi(X) given the Riemann Spectrum
+
+
+<p>&nbsp;</p>
+<p>All the tinkering we did to get at the Riemann spectrum $\theta_i$'s is potentially unsatisfying, because we only showed how to use the $\theta_i$'s to recover the prime powers. &nbsp;They were the positive real numbers $t$ for which the series $$G_C(t) = -1 - \sum_{i &lt; C} \cos(\theta_i \log(t))$$&nbsp;spiked, as $C$ got bigger and bigger.</p>
+<p>But what I really <em><strong>promised</strong></em>&nbsp;you was a better purely analytic formula for $\pi(x)$ itself. &nbsp;This Riemann gave:</p>
+<p><strong>Theorem (Riemann):</strong>&nbsp; Let $$R(X) = \sum_{n=1}^{\infty} \frac{\mu(n)}{n} {\rm Li}(X^{\frac{1}{n}}).$$&nbsp;Assume that the Riemann Hypothesis is true. &nbsp;Then (note the complex number in the exponent...)</p>
+<p>$$\pi(x) = R(X) - \sum_{j=1}^{\infty} R(X^{\frac{1}{2} + i\theta_j})$$</p>
+<p><strong>YES, that says equals, not approximate!</strong></p>
+<p>Here,&nbsp;$$\mu(n) = \begin{cases} 1 &amp; \text{$n$ squarefree positive integer with even number of distinct prime factors (squarefree meven)}\\-1&amp;\text{$n$ squarefree positive integer with odd number of distinct prime factors (squarefree modd)}\\0&amp;\text{not squarefree}\end{cases}$$ is the Moebius function.</p>
+<p>&nbsp;</p>
+<p>Let's try it out. &nbsp; First we will try to plot <strong><em>just</em></strong>&nbsp;the function $R(X)$, which is Riemann's initial proposal for a better approximation to $\pi(x)$ than Gauss gave.&nbsp;</p>
+
+{{{id=8|
+Li(1+I)  # Li(complex number) doesn't work, so we use mpmath below...
+///
+}}}
+
+{{{id=1|
+import mpmath
+mpmathli2 = mpmath.li(2)
+def R(X, k):
+    s = 0
+    for n in range(1,k):
+        ninv = 1/float(n)
+        m = moebius(n)
+        if m:
+            s += (m*ninv)*complex(mpmath.li(X^ninv)-mpmathli2)
+    return s
+///
+}}}
+
+{{{id=7|
+@interact
+def f(B1=3, B2=100, k=10):
+    G = plot(lambda x: R(x,k).real, (B1, B2), color='red') 
+    G += plot(prime_pi, B1, B2)
+    G += plot(x/(log(x)-1), B1, B2, color='green')
+    G += plot(Li, B1, B2, color='black')
+    G.show(figsize=[8,3])
+///
+}}}
+
+<p><strong>Exercise: &nbsp;</strong>Use the above code to plot $\pi(x)$ versus Gauss's guess $Li(x)$, the guess $x/(log(x)-1)$, and Riemann's fundamental function $R(x)$ for various ranges. &nbsp;For example, what happens around one hundred thousand (100000)? &nbsp; Which approximation appears best?</p>
+
+{{{id=12|
+
+///
+}}}
+
+{{{id=31|
+def li2(x):
+    x = CDF(x)  
+    return CDF(euler_gamma)+log(log(x))+sum(log(x)^n/(n*factorial(n)) for n in range(1,10)) - 1.04516378012
+
+def R(X, k):
+    s = 0
+    for n in range(1,k):
+        ninv = 1/float(n)
+        m = moebius(n)
+        if m:
+            s += (m*ninv)*li2(X^ninv)
+    return s
+///
+}}}
+
+{{{id=17|
+z1 = CDF(1/2, zeta_zeros()[0])
+print z1
+def riemann1(X, k=10):
+    X = CDF(X)
+    return -(R(X^z1,k) + R(X^z1.conjugate(), k))
+    #return R(X,k) - R(X^z1,k) - R(X^z1.conjugate(), k)
+///
+}}}
+
+{{{id=34|
+riemann1(100,10)
+///
+}}}
+
+{{{id=29|
+plot(lambda x: riemann1(x, 10).real(), 3, 100, plot_points=200)
+///
+}}}
+
+<p>Crap -- there is an issue involving choices of branch cuts, and I don't have time to resolve this.</p>
+
+{{{id=28|
+R(90,200)
+///
+}}}
+
+{{{id=23|
+prime_pi(90)
+///
+}}}
+
+{{{id=24|
+R(90^(1/2 + I*zeta_zeros()[0]), 10)
+///
+}}}
+
+{{{id=25|
+R(90^(1/2 - I*zeta_zeros()[0]), 10)
+///
+}}}
+
+{{{id=26|
+R(90^(1/2 - I*zeta_zeros()[0]), 20)
+///
+}}}
+
+{{{id=27|
+R(90^(1/2 - I*zeta_zeros()[0]), 50)
+///
+}}}
+
+{{{id=16|
+@interact
+def f(B1=3, B2=100, k=10):
+    G = plot(lambda x: riemann1(x,k).real, (B1, B2), color='red') 
+    G += plot(prime_pi, B1, B2)
+    G += plot(x/(log(x)-1), B1, B2, color='green')
+    G += plot(Li, B1, B2, color='black')
+    G.show(figsize=[8,3])
+///
+}}}
+
+{{{id=18|
+
+///
+}}}
+
+<p>Next let's try throwing in a few of the additional terms $R(X^{\frac{1}{2} + i \theta_j})$.</p>
+
+{{{id=14|
+zz = zeta_zeros()
+def riemann(X, terms=5, k=10):
+    X = complex(X)
+    return R(X,k) - sum(R(X^complex(1/2, zz[j]), k) for j in range(terms))
+///
+}}}
+
+{{{id=9|
+@interact
+def f(B1=3, B2=100, k=10, terms=3):
+    G = plot(lambda x: riemann(x,terms,k).real, (B1, B2), color='red') 
+    G += plot(prime_pi, B1, B2)
+    G += plot(x/(log(x)-1), B1, B2, color='green')
+    G += plot(Li, B1, B2, color='black')
+    G.show(figsize=[8,3])
+///
+}}}
+
+{{{id=38|
+
+///
+}}}
+
+{{{id=37|
+
+///
+}}}
+
+<p>Code that works that uses some tricks.</p>
+
+{{{id=36|
+class RiemannPiApproximation:
+    r"""
+    Riemann's explicit formula for `\pi(X)`.
+
+    EXAMPLES::
+
+    We compute Riemann's analytic approximatin to `\pi(25)` using `R_{10}(x)`:
+    
+        sage: R = RiemannPiApproximation(10, 100); R
+        Riemann explicit formula for pi(x) for x <= 100 using R_k for k <= 10
+        sage: R.Rk(100, 10)
+        25.3364299527
+        sage: prime_pi(100)
+        25
+    
+    """
+    def __init__(self, kmax, xmax, prec=50):
+        """
+        INPUT:
+
+            - ``kmax`` -- (integer) large k allowed
+
+            - ``xmax`` -- (float) largest input x value allowed
+
+            - ``prec`` -- (default: 50) determines precision of certain series approximations
+        
+        """
+        from math import log
+        self.xmax = xmax
+        self.kmax = kmax
+        self.prec = prec
+        self.N = int(log(xmax)/log(2))
+        self.rho_k = [0] + [CDF(0.5, zeta_zeros()[k-1]) for k in range(1,kmax+1)]
+        self.rho = [[0]+[rho_k / n for n in range(1, self.N+1)]  for rho_k in self.rho_k]
+        self.mu = [float(x) for x in moebius.range(0,self.N+2)]
+        self.msum = sum([moebius(n) for n in xrange(1,self.N+1)])
+        self._init_coeffs()
+
+    def __repr__(self):
+        return "Riemann explicit formula for pi(x) for x <= %s using R_k for k <= %s"%(self.xmax, self.kmax)
+
+    def _init_coeffs(self):
+        self.coeffs = [1]
+        n_factorial = 1.0
+        for n in xrange(1, self.prec):
+            n_factorial *= n
+            zeta_value = float(abs(zeta(n+1)))
+            self.coeffs.append(float(1.0/(n_factorial*n*zeta_value)))
+    
+    def _check(self, x, k):
+        if x > self.xmax:
+             raise ValueError, "x (=%s) must be at most %s"%(x, self.xmax)
+        if k > self.kmax:
+            raise ValueError, "k (=%s) must be at most %s"%(k, self.kmax)
+
+    @cached_method
+    def R(self, x):
+        from math import log
+        y = log(x)
+        z = y
+        a = float(1)
+        for n in xrange(1,self.prec):
+            a += self.coeffs[n]*z
+            z *= y
+        return a
+
+    @cached_method
+    def Rk(self, x, k):
+        return self.R(x) + self.Sk(x, k)
+
+    @cached_method
+    def Sk(self, x, k):
+        """
+        Compute approximate correction term, so Rk(x,k) = R(x) + Sk(x,k)
+        """
+        self._check(x, k)
+
+        from math import atan, pi, log
+        log_x = log(x)  # base e
+        # This is from equation 32 on page 978 of Riesel-Gohl.
+        term1 = self.msum / (2*log_x) + \
+                   (1/pi) * atan(pi/log_x)
+    
+        # This is from equation 19 on page 975
+        term2 = sum(self.Tk(x, v) for v in xrange(1,k+1))
+        return term1 + term2
+
+    @cached_method
+    def Tk(self, x, k):
+        """
+        Compute sum from 1 to N of
+           mu(n)/n * ( -2*sqrt(x) * cos(im(rho_k/n)*log(x) \
+                - arg(rho_k/n)) / ( pi_over_2 * log(x) )
+        """
+        self._check(x, k)
+        x = float(x)
+        log_x = log(x)
+        val = float(0)
+        rho_k = self.rho_k[k]
+        rho = self.rho[k]
+        for n in xrange(1, self.N+1):
+            rho_k_over_n = rho[n]
+            mu_n = self.mu[n]
+            if mu_n != 0:
+                z = Ei( rho_k_over_n * log_x)
+                val += (mu_n/float(n)) * (2*z).real()
+        return -val
+
+    def plot_Rk(self, k, xmin=2, xmax=None, **kwds):
+        r"""
+        Plot `\pi(x)` and `R_k` between ``xmin`` and ``xmax``.  If `k`
+        is a list, also plot every `R_k`, for `k` in the list.
+
+        The **kwds are passed onto the line function, which is used
+        to draw the plot of `R_k`.
+        """
+        if not xmax:
+            xmax = self.xmax
+        else:
+            if xmax > self.xmax:
+                raise ValueError, "xmax must be at most %s"%self.xmax
+            xmax = min(self.xmax, xmax)
+        if kwds.has_key('plot_points'):
+            plot_points = kwds['plot_points']
+            del kwds['plot_points']
+        else:
+            plot_points = 100
+        eps = float(xmax-xmin)/plot_points
+        if not isinstance(k, list):
+            k = [k]
+        f = sum(line([(x,self.Rk(x,kk)) for x in [xmin,xmin+eps,..,xmax]], **kwds)
+                for kk in k)
+        g = prime_pi.plot(xmin, xmax, rgbcolor='red')
+        return g+f
+///
+}}}
+
+{{{id=40|
+R = RiemannPiApproximation(10, 100); R
+///
+}}}
+
+{{{id=15|
+R.Rk(100, 10)
+///
+}}}
+
+{{{id=41|
+R.plot_Rk(10, 3, 30)
+///
+}}}
+
+{{{id=42|
+@interact
+def f(k=0, B1=3, B2=100):
+    R.plot_Rk(k, B1, B2).show()
+///
+}}}
+
+{{{id=43|
+
+///
+}}}
