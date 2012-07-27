@@ -50,5 +50,4 @@ Day 4: The Riemann Spectrum
   * [Fourier Transform (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/fourier_transform.txt)
   * [The Spectrum of the Prime Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/spectrum_of_primes.txt)
   * [Fourier Transform and the Riemann Spectrum (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/fourier_riemann.txt)
-
-
+  * [Building $\pi(x)$ from the Spectrum (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/building_pi.txt)

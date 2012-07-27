@@ -65,6 +65,10 @@ def f(B=(40,(1..250))):
 ///
 }}}
 
+<p>As we saw above, we can go from knowing the Riemann spectrum $\theta_i$ to knowing the prime powers (hence the primes), since the functions</p>
+<p>$$G_C(t) = -1 - \sum_{i &lt; C} \cos(\theta_i \log(t))$$</p>
+<p>(as $C$ gets bigger) have spikes at the prime powers.&nbsp;</p>
+
 {{{id=9|
 
 ///
