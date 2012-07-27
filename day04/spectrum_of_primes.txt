@@ -1,0 +1,197 @@
+Day 4: The Spectrum of the Prime Numbers
+
+<p>Consider two infinite trigonometric sums:</p>
+<ol>
+<li>A sum of cosine waves with frequencies given by the logarithms of prime powers...</li>
+<li>A sum of cosine waves with frequencies given by something we will call the <strong><em>spectrum of the prime numbers.</em></strong></li>
+</ol>
+
+{{{id=5|
+
+///
+}}}
+
+<p><strong>The First Trig Sum</strong></p>
+<p>Let $C$ be a positive number and let</p>
+<p>$$F_C(t) = -\sum_{p^n\leq C} \frac{\log(p)}{p^{n/2}} \cos(t \log(p^n))$$</p>
+<p>where the sum is over all prime powers $p^n$ of prime numbers $p$ up to $C$.</p>
+
+{{{id=6|
+def F(C):
+    t = var('t')
+    return -sum([(log(pn.factor()[0][0])/pn.sqrt())*cos(t*log(pn)) if pn>1 else 0 
+                 for pn in prime_powers(C)])
+///
+}}}
+
+{{{id=4|
+F(8)
+///
+}}}
+
+{{{id=3|
+plot(F(8), 1,100, ymin=0, figsize=[7,3])
+///
+}}}
+
+{{{id=2|
+plot(F(20), 1,100, ymin=0, figsize=[7,3])
+///
+}}}
+
+{{{id=1|
+plot(F(50), 1,100, ymin=0, figsize=[7,3])
+///
+}}}
+
+<p>This function has clear <strong><em>spikes</em></strong>&nbsp;at certain real numbers. &nbsp;As we increase $C$, the spikes get clearer and clearer.</p>
+
+{{{id=9|
+plot(F(150), 1,100, ymin=0, figsize=[7,3])
+///
+}}}
+
+<p>The positions of these spikes are included in a database in Sage called "zeta zeroes".</p>
+
+{{{id=11|
+zeta_zeros()[:30]
+///
+}}}
+
+{{{id=12|
+(points([(x,0) for x in zeta_zeros()[:30]],color='red', pointsize=50) + 
+        plot(F(150), 1,100, ymin=0, figsize=[7,3]))
+///
+}}}
+
+<p><strong>Exercise: </strong>Look further, i.e., try extending the horizontal range fo the plot beyond 100 and/or try varying $C$. &nbsp;Also get more zeros from the zeta_zeros() command. (Note that $C$ beyond a few hundred will take too long.)</p>
+
+{{{id=20|
+
+///
+}}}
+
+{{{id=19|
+
+///
+}}}
+
+{{{id=18|
+
+///
+}}}
+
+{{{id=27|
+
+///
+}}}
+
+<p><strong>The Spectrum of the Prime Numbers:</strong>&nbsp; We call the spike positions $\theta_1 =&nbsp;14.134725142$, $\theta_2 = 21.022039639$, $\theta_3 = 25.01085758$, etc., the <strong><em>spectrum of the prime numbers. &nbsp;&nbsp;</em></strong></p>
+<p>We will motivate this terminology later by realizing these numbers via Fourier analysis.</p>
+
+{{{id=26|
+
+///
+}}}
+
+{{{id=25|
+
+///
+}}}
+
+{{{id=17|
+
+///
+}}}
+
+<p><strong>The Second Trig Sum</strong></p>
+<p>Let $\theta_1 =&nbsp;14.134725142$, $\theta_2 = 21.022039639$, $\theta_3 = 25.01085758$, etc., be the positions of the spikes that we observed when considering the first trig sum.</p>
+<p>The second trigonometric sum that we will consider is</p>
+<p>$$G_C(t) = -1 - \sum_{i&lt;C} \cos(\theta_i \log(t))$$</p>
+
+{{{id=13|
+def G(C):
+    t = var('t')
+    return -1 - sum(cos(theta * log(t)) for theta in zeta_zeros()[:C])
+///
+}}}
+
+{{{id=22|
+G(4)
+///
+}}}
+
+{{{id=30|
+plot(G(200), (t, 1,16), ymin=0, ymax=8, figsize=[9,2], gridlines=True)
+///
+}}}
+
+<p>Before we go on, any <strong>guess</strong> as to where the big spikes are?</p>
+
+{{{id=33|
+
+///
+}}}
+
+{{{id=37|
+
+///
+}}}
+
+{{{id=36|
+
+///
+}}}
+
+{{{id=35|
+
+///
+}}}
+
+{{{id=23|
+(plot(G(500), (t, 1,100)) + 
+    points([(k,0) for k in prime_powers(100)], color='red', pointsize=20, ymin=0, figsize=[9,3]))
+///
+}}}
+
+{{{id=44|
+(plot(G(1000), (t, 28,33)) + 
+    points([(k,0) for k in [29,31,32]], color='red', pointsize=100, ymin=0, figsize=[9,3]))
+///
+}}}
+
+{{{id=24|
+d
+///
+}}}
+
+<p><strong>Exercise:&nbsp;</strong></p>
+<p>Draw plots like the above, but beyond 100, with large $C$, etc. &nbsp; Does the pattern seem to hold up?</p>
+
+{{{id=29|
+
+///
+}}}
+
+{{{id=42|
+
+///
+}}}
+
+{{{id=41|
+
+///
+}}}
+
+{{{id=40|
+
+///
+}}}
+
+<p><strong>Exercise:</strong>&nbsp;</p>
+<p>Given the remarks above, where are the spikes of $$G_C(t) = -1 - \sum_{i&lt;C} \cos(\theta_i t)$$ located? &nbsp;(This is the same function as above, but with $\log(t)$ replaced by $t$.)</p>
+
+{{{id=39|
+
+///
+}}}
