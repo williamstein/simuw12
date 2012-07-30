@@ -1,0 +1,22 @@
+Day 5: Perimeter Numbers (exercise)
+
+<p><strong>Definition: </strong>A&nbsp;<em>perimeter number</em>&nbsp;is an integer $n$ that is the perimeter of some rational right triangle. &nbsp;Thus there exists $(a,b,c)$ with $a^2+b^2=c^2$ and $n=a+b+c$.</p>
+<p><strong><br /></strong></p>
+<p><strong>Exercise: &nbsp;</strong>Study perimeter numbers (you will need paper and pencil). &nbsp;Some motivating questions:</p>
+<ol>
+<li>Prove there are infinitely many perimiter numbers.</li>
+<li>Find at least 5 different squarefree perimeter numbers.&nbsp;&nbsp;</li>
+<li>If $n$ is a perimeter number, is it automatically the perimeter of infinitely many rational right triangles (like we had with congruent numbers)?</li>
+<li>Is $2012$ a perimeter number?</li>
+<li>Are any integers not perimeter numbers?</li>
+</ol>
+
+{{{id=1|
+
+///
+}}}
+
+{{{id=4|
+
+///
+}}}
