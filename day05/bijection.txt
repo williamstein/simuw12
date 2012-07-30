@@ -1,0 +1,66 @@
+
+Day 5: Deriving the bijection
+
+<p>Fix an integer $n$. In this worksheet we will show -- via a series of exercises -- that the rational right triangles with area $n$ are in bijection with the solutions to $y^2=x^3-n^2x$ with $y\neq 0$.</p>
+
+{{{id=3|
+
+///
+}}}
+
+<p>Think purely conceptually (don't write anything down yet!):</p>
+<p><strong>Exercise 1:</strong> &nbsp;Imagine the surface $$ a^2 + b^2 = c^2 $$ in three-dimensional space. &nbsp;You can draw it with Sage -- did you imagine the right thing?</p>
+
+{{{id=1|
+var('a,b,c'); h=1.5
+implicit_plot3d(a^2 + b^2 == c^2, (a,-h,h),(b,-h,h),(c,-h,h), figsize=3)
+///
+}}}
+
+<p><strong>Exercise 2: </strong>Imagine the surface $$ \frac{ab}{2} = n $$ in three-dimensional space.</p>
+<p>Fix a particular choice of $n$ and plot the above surface in Sage:</p>
+
+{{{id=5|
+var('a,b'); h=10; n=6
+implicit_plot3d(a*b/2==n, (a,-h,h),(b,-h,h),(c,-h,h), color='red', figsize=3)
+///
+}}}
+
+<p><strong>Exercise:&nbsp;</strong>imagine the intersection of those two surfaces. You should be visualizing a curve in three dimensional space. &nbsp;</p>
+<p>This Sage plot may help your imagination:</p>
+
+{{{id=7|
+var('a,b,c'); h=10; n=6
+(implicit_plot3d(a*b/2==n, (a,-h,h),(b,-h,h),(c,-h,h), color='red', 
+               opacity=.6, figsize=3) +
+ implicit_plot3d(a^2 + b^2 == c^2, (a,-h,h),(b,-h,h),(c,-h,h), figsize=3))
+///
+}}}
+
+<p><strong>Exercise:</strong> Solve for $a$ in the equation $ab/2 = n$ and substitute it into $a^2 + b^2 = c^2$ to obtain an equation of the curve you visualized in three space in the previous problem. You should be able to put this curve in the form $$ 4n^2 + X^4 = Y^2. $$ (You'll have to let $X$ and $Y$ equal something involving $a$ and $b$.)</p>
+
+{{{id=11|
+
+///
+}}}
+
+<p><strong>Exercise:</strong> Replace $X$ by $y_1$ and $Y$ &nbsp;by $x_1+y_1^2$ in the equation for your curve. Simplify and get another curve (but in the variables $x_1$ and $y_1$): $$ 4n^2 = x_1^2 + 2 y_1^2 x_1 $$ You should easily be able to do all this by hand.</p>
+
+{{{id=13|
+
+///
+}}}
+
+<p><strong>Exercise:&nbsp;</strong>Multiply both sides of the equation you obtained above by $x_1$, then replace $x_1$ by $x_2$ and $y_1$ by $y_2/x_2$, to obtain: $$ 4n^2 x_2 = x_2^3 + 2y_2^2. $$</p>
+
+{{{id=9|
+
+///
+}}}
+
+<p><strong>Exercise:&nbsp;</strong>Do a few additional manipulations to finally obtain the equation $$ y^2 = x^3 - n^2x. $$</p>
+
+{{{id=14|
+
+///
+}}}
