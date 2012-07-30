@@ -43,8 +43,8 @@ def cong_number_sets(n):
     if n % 2 == 0:   # even case
         E = []       # with c even
         O = []       # with c odd
-        a_bound = (sqrt(n/8) + 1).floor()
-        c_bound = (sqrt(n)/4 + 1).floor()
+        a_bound = floor(sqrt(n/8) + 1)
+        c_bound = floor(sqrt(n)/4 + 1)
         half_n = n//2
         for c in range(-c_bound, c_bound+1):
             c_square = c^2
@@ -113,13 +113,13 @@ def cong_number_curve(n):
     """
     return EllipticCurve([-n^2,0])
 
-def cong_curve_gens(n, verbose=True):
+def cong_curve_gens(n, verbose=True, descent_second_limit=20):
     """
     Returns generators for the Mordell-Weil group of the elliptic
     curve corresponding to n.
     """
     E = cong_number_curve(n)
-    return E.gens(verbose=verbose, proof=False, descent_second_limit=25)
+    return E.gens(verbose=verbose, proof=False, descent_second_limit=descent_second_limit)
 
 def cong_triangle(P):
     """
