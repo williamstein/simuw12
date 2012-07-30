@@ -1,0 +1,83 @@
+Day 5: Congruent numbers and elliptic curves
+
+<p><strong>Theorem</strong>: Let $n$ be a rational number. &nbsp;There is a bijection between</p>
+<p>$$ A = \left\{(a,b,c) \in \QQ^3 \,:\, \frac{ab}{2} = n,\, a^2 + b^2 = c^2\right\} $$ and $$ B = \left\{(x,y) \in \QQ^2 \,:\, y^2 = x^3 - n^2 x, \,\,\text{ with } y \neq 0\right\} $$ given explicitly by the maps $$ f(a,b,c) = \left(-\frac{nb}{a+c},\,\, \frac{2n^2}{a+c}\right) $$ and $$ g(x,y) = \left(\frac{n^2-x^2}{y},\,\, -\frac{2xn}{y},\,\, \frac{n^2+x^2}{y}\right). $$</p>
+<p>The proof is just algebra -- just check that the maps are mutually inverse bijections.</p>
+
+{{{id=2|
+def f(a,b,c):
+    n = a*b/2
+    return (-n*b/(a+c), 2*n^2/(a+c))
+def g(x,y):
+    n = sqrt(abs((y^2-x^3)/x))
+    return ((n^2-x^2)/y, -2*x*n/y, (n^2+x^2)/y)
+///
+}}}
+
+{{{id=1|
+f(3,4,5)
+///
+}}}
+
+{{{id=4|
+g(-3,9)
+///
+}}}
+
+{{{id=27|
+
+///
+}}}
+
+{{{id=5|
+
+///
+}}}
+
+<p><strong>Consequence:</strong>&nbsp; Let $n$ be an integer. &nbsp;Understanding the right rational triangles $(a,b,c)$ with area $n$ (i.e., the set $A$ above) is equivalent to understanding the solutions (the set $B$ plus some trivial solutions) to the cubic equation $y^2=x^3-n^2x$.</p>
+<p>The equation $y^2=x^3-n^2x$ defines an <strong>elliptic curve</strong>. &nbsp; Elliptic curves are absolutely central to mainstream contemporary number theory, and an enormous amount is known about them. &nbsp;Thus the millenium old congruent number problem is directly connected to modern number theory, in particular to the <a href="http://www.claymath.org/millennium/Birch_and_Swinnerton-Dyer_Conjecture/" target="_blank">Clay Mathematics "Millenium problem" about elliptic curves.</a></p>
+
+{{{id=8|
+E = EllipticCurve([-6^2,0]); E
+///
+}}}
+
+{{{id=7|
+E.plot(figsize=[6,3]) + point((-3,9),pointsize=100,color='red')
+///
+}}}
+
+<p>The set of rational points on an elliptic curve is an abelian group. So...</p>
+
+{{{id=9|
+P = E((-3,9)); P
+///
+}}}
+
+{{{id=10|
+P+P
+///
+}}}
+
+{{{id=11|
+a,b,c = g(6, 25/4, -35/8); a,b,c
+///
+}}}
+
+{{{id=13|
+a^2 + b^2 == c^2
+///
+}}}
+
+{{{id=14|
+a*b/2
+///
+}}}
+
+<p>This deeper structure just revealed <em><strong>another</strong></em> rational right triangle with area $6$.</p>
+<p>In the next worksheet we will take a detour and learn about elliptic curves.&nbsp;</p>
+
+{{{id=15|
+
+///
+}}}
