@@ -1,0 +1,57 @@
+Day 5: Introduction to the Congruent Number Problem
+
+<p><strong>Definition: </strong>A <strong><em>rational right triangle</em></strong>&nbsp;is a right triangle with rational side lengths, i.e., a triple $(a,b,c)$ of rational numbers such that $a^2+b^2=c^2$. &nbsp;</p>
+<p>Note: We <strong><em>allow</em></strong>&nbsp;$a,b,c$ to possibly be negative, which simplifies things dramatically.</p>
+<p><strong>Definition: </strong>An integer $n$ is a <strong><em>congruent number</em></strong>&nbsp;if it is the area of a rational right triangle.</p>
+<p>For example, $6$ and $-6$ are congruent numbers, being the area of the $(3,4,5)$ and $(-3,4,5)$ rational right triangles.</p>
+<p><strong>Exercise:&nbsp;</strong> Prove that $n$ is a congruent number if and only if $nk^2$ is a congruent number for any positive integer $k$.</p>
+<p><strong><em>Motivating Question</em></strong>: Is $2012=2^{2} \cdot 503$ a congruent number? &nbsp; &nbsp; &nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Terrifying Example: </strong>$n=157$ is a congruent number. &nbsp;The <em><strong>simplest</strong></em> right triangle with area $157$ is:</p>
+<p>$a = -44538033219/1326635050$</p>
+<p>$b=-267980280100/44538033219$ &nbsp;</p>
+<p>$c=-2015242462949760001961/59085715926389725950$</p>
+<p><strong><br /></strong></p>
+<p><strong>Major Open Problem (which is well over ONE THOUSAND years old!): </strong>Give an algorithm that decides whether or not an integer $n$ is a congruent number.</p>
+<p>Discussion: what is an <em><strong>algorithm</strong></em>?</p>
+
+{{{id=4|
+
+///
+}}}
+
+{{{id=2|
+
+///
+}}}
+
+<p>Why are they called "<em><strong>congruent numbers</strong></em>"? &nbsp;The name seems funny, but here's why.</p>
+<p><strong>Claim:</strong> <em>Suppose $n$ is a congruent number, so there is a rational right triangle $(a,b,c)$ with $n=ab/2$. &nbsp;Let $x=(c/2)^2$. &nbsp;Then $x-n, x, x+n$ are all perfect squares of rational numbers. &nbsp; Conversely, if $x-n,x,x+n$ are all perfectly squares, then $n$ is a congruent number.</em></p>
+<p>Thus $n$ is the congruence between these numbers.&nbsp;</p>
+<p>Prove the above claim:</p>
+<p>(==&gt;) &nbsp; We have $a^2+b^2 = c^2$ and $ab/2=n$. &nbsp;Adding and subtracting 4 times the second equation from the first, we obtain&nbsp;$$(a\pm b)^2 = c^2 \pm 4n.$$ Dividing by $4$ shows that $(c/2)^2\pm n$ is the square of a rational number.</p>
+
+{{{id=1|
+a=3; b=4; c=5; n = 6
+x = (c/2)^2; x
+///
+}}}
+
+{{{id=7|
+x-n, x, x+n
+///
+}}}
+
+<p>(&lt;==) &nbsp;Suppose $x$ is a rational number and $n$ an integer such that $x-n, x, x+n$ are all squares. &nbsp;Let $$a=\sqrt{x+n}-\sqrt{x-n},\qquad b=\sqrt{x+n}+\sqrt{x-n}, \qquad c=2\sqrt{x}.$$ &nbsp;Then $(a,b,c)$ defines a rational right triangle, because $a,b,c$ are all rational and:</p>
+
+{{{id=6|
+var('x,n')
+a = sqrt(x+n)-sqrt(x-n); b = sqrt(x+n)+sqrt(x-n); c=2*sqrt(x)
+bool(a^2 + b^2 == c^2)
+///
+}}}
+
+{{{id=9|
+
+///
+}}}
