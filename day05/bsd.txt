@@ -1,0 +1,680 @@
+Day 5: The Birch and Swinnerton-Dyer Conjecture -- overview
+
+{{{
+}}}
+<p>&nbsp;</p>
+<p style="text-align: center;"><span style="color: #3333b3;"><span style="font-size: xx-large;"><strong>The Birch and Swinnerton-Dyer Conjecture</strong></span></span></p>
+<p style="text-align: center;"><span style="color: #3333b3;"><span style="font-size: x-large;"><strong><span style="font-size: x-large;"><span style="color: #333333;"><span style="font-size: large;"><br /></span></span></span></strong></span></span></p>
+<p style="text-align: center;"><span style="color: #3333b3;"><span style="font-size: x-large;"><strong><span style="font-size: x-large;"><span style="color: #333333;"><span style="font-size: large;">Content by: Benedict Gross (Harvard) and William Stein (Univ of Washington)</span></span></span></strong></span></span></p>
+<p style="text-align: center;"><span style="color: #3333b3;"><span style="font-size: x-large;"><strong><span style="font-size: x-large;"><span style="color: #333333;"><br /></span></span></strong></span></span></p>
+
+{{{id=125|
+
+///
+}}}
+
+{{{id=3|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Algebraic Equations</span></span></p>
+<p>Mathematicians solve many types of equations:</p>
+<p>$x^2 + y^2 = z^2$ has solutions $(3,4,5), (5,12,13), \ldots$.</p>
+<div id="_mcePaste" style="position: absolute; left: -10000px; top: 46px; width: 1px; height: 1px; overflow-x: hidden; overflow-y: hidden;">There are solutions on a Babylonian tablet from 1800 BCE:</div>
+<p>There are solutions on a Babylonian tablet from 1800 BCE:</p>
+<p>&nbsp;</p>
+<p style="text-align: center;"><img style="border-style: initial; border-color: initial; vertical-align: middle;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/plimpton.png" alt="" width="600" /></p>
+<p>&nbsp;</p>
+
+{{{id=7|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Finding all of the solutions &nbsp; &nbsp;</span></span></p>
+<p>$x^2 + y^2 = z^2$ has general solution $x=p^2-q^2$, $y=2pq$, $z=p^2+q^2$.</p>
+<p>See this by considering the line of slope $t=p/q$ through $(0,-1)$ intersected with the unit circle.</p>
+
+{{{id=6|
+@interact
+def _(t=(1/16,1/8,..,1)):
+    t0 = t
+    x,y,t=var('x,y,t')
+    print [x==(1-t^2)/(1+t^2), y==2*t/(1+t^2)]
+    t = t0
+    (x,y) = ((1-t^2)/(1+t^2), 2*t/(1+t^2))
+    a = 1/3
+    html('<center>')
+    G = circle((0,0), 1, color='blue', thickness=3)
+    G += text("$(0,%s)$"%latex(t), (-.2, t+.2), fontsize=20, color='black')
+    G += text("$(%s,%s)$"%(latex(x),latex(y)), (x+.3, y+.3), fontsize=20, color='black')
+    G += arrow((-1-a,-t*a), (x+a,y+t*a), head=2, color='red')
+    G += point((0,t), pointsize=150, color='black', zorder=100)
+    G += point((-1,0), pointsize=150, color='black', zorder=100)
+    G += point((x,y), pointsize=190, color='lightgreen', zorder=100)
+    G.show(aspect_ratio=1, ymax=1.4, xmax=2, fontsize=0, figsize=6)
+    html('</center>')
+///
+<html><!--notruncate-->
+        <div padding=6 id="div-interact-6">
+          <table width=800px height=20px bgcolor="#c5c5c5" cellpadding=15>
+            <tr>
+              <td bgcolor="#f9f9f9" valign=top align=left>
+            <table>
+              <tr><td colspan=3><table><tr><td align=right><font color="black">t&nbsp;</font></td><td>
+        <table>
+          <tr>
+            <td>
+              <div id="slider-t-6" style="margin:0px; margin-left: 1.0em; margin-right: 1.0em; width: 15.0em;"></div>
+            </td>
+            
+            <td>
+              <font color="black" id="slider-t-6-lbl"></font>
+            </td>
+          </tr>
+        </table><script>
+    (function() {
+        var values = ["1/16","1/8","3/16","1/4","5/16","3/8","7/16","1/2","9/16","5/8","11/16","3/4","13/16","7/8","15/16","1"];
+        setTimeout(function() {
+            $('#slider-t-6').slider({
+                step: 1,
+                min: 0,
+                max: 15,
+                value: 0,
+                change: function (e, ui) {
+                    var position = ui.value;
+                    if (values != null) {
+                        $('#slider-t-6-lbl').text(values[position]);
+                        interact(6, {variable: 't', adapt_number: 2, value: encode64(position)}, 1);
+                    }
+                },
+                slide: function (e, ui) {
+                    if (values != null) {
+                        $('#slider-t-6-lbl').text(values[ui.value]);
+                    }
+                }
+            });
+            if (values != null) {
+                $('#slider-t-6-lbl').text(values[$('#slider-t-6').slider('value')]);
+            }
+        }, 1);
+    })();
+    </script></td>
+</tr></table></td></tr>
+              <tr><td></td><td style='width: 100%;'>
+        <div id="cell-interact-6"><?__SAGE__START>
+          <table border=0 bgcolor="white" width=100%>
+            <tr>
+              <td bgcolor="white" align=left valign=top>
+                <pre><?__SAGE__TEXT></pre>
+              </td>
+            </tr>
+            <tr>
+              <td align=left valign=top><?__SAGE__HTML></td>
+            </tr>
+          </table><?__SAGE__END>
+        </div></td><td></td></tr>
+              <tr><td colspan=3></td></tr>
+            </table></td>
+            </tr>
+          </table>
+        </div></html>
+}}}
+
+{{{id=64|
+
+///
+}}}
+
+{{{id=63|
+
+///
+}}}
+
+{{{id=207|
+
+///
+}}}
+
+{{{id=10|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Cubic Curves &nbsp; &nbsp;</span></span></p>
+
+<p>$x^3 + y^3 = 1$</p>
+
+{{{id=13|
+var('x,y')
+implicit_plot(x^3 + y^3 == 1, (x,-2,2), (y,-2,2), figsize=5, gridlines=True)
+///
+}}}
+
+{{{id=198|
+
+///
+}}}
+
+<p>$y^2 - y = x^3 - x$</p>
+
+{{{id=16|
+implicit_plot(y^2 - y == x^3 - x, (x,-2,2), (y,-1,2), figsize=5, gridlines=True)
+///
+}}}
+
+{{{id=66|
+
+///
+}}}
+
+{{{id=65|
+
+///
+}}}
+
+{{{id=15|
+
+///
+}}}
+
+<p><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/fermat_quad.png" alt="" /></p>
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">New solutions from old ones: The Secant Process</span></span></p>
+
+{{{id=31|
+E = EllipticCurve([0,0,1,-1,0])
+html('<center><font size=+2>$%s$</font></center>'%latex(E))
+G = E.plot(plot_points=600, thickness=2)
+G += arrow((-2,1), (3,-4), head=2, color='red', width=2)
+G += points([(-1,0), (0,-1), (2,-3)], color='black', pointsize=70, zorder=50)
+G += text("$(2,-3)$", (1.1,-3), fontsize=18, color='black')
+G.show(gridlines='minor', frame=True, figsize=[4,4])
+///
+}}}
+
+{{{id=67|
+
+///
+}}}
+
+{{{id=32|
+
+///
+}}}
+
+<p><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/fermat_orange.png" alt="" height="200/" /></p>
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">New solutions from old ones: The Tangent Process</span></span></p>
+
+{{{id=33|
+E = EllipticCurve([0,0,1,-1,0])
+html('<center><font size=+2>$%s$</font></center>'%latex(E))
+G = E.plot(plot_points=600, thickness=2)
+G += arrow((-1,1), (2,-2), head=2, color='red', width=2)
+G += points([(0,0), (1,-1)], color='black', pointsize=70, zorder=50)
+G += text("$(1,-1)$", (1.4,-.5), fontsize=16, color='black')
+G.show(gridlines=True, frame=True, figsize=[4,4], xmin=-2, xmax=3)
+///
+<html><font color='black'><center><font size=+2><span class="math">y^2 + y = x^3 - x </span></font></center></font></html>
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=12|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Large solutions &nbsp; &nbsp;</span></span></p>
+<p>We can turn this into an abelian group law on the set of solutions.  Is it finite or infinite?</p>
+<p>If the group is infinite, the solutions become very large.</p>
+<p>$P=(0,0)$ on $y^2-y=x^3-x$</p>
+<p>Compute $x$-coordinate of $nP$:</p>
+
+{{{id=35|
+@interact
+def _(n=(1..65)):
+    E = EllipticCurve([0,0,1,-1,0])
+    P = E([0,0])
+    show((n*P)[0])
+///
+}}}
+
+{{{id=37|
+
+///
+}}}
+
+{{{id=36|
+
+///
+}}}
+
+{{{id=212|
+
+///
+}}}
+
+{{{id=211|
+
+///
+}}}
+
+{{{id=210|
+
+///
+}}}
+
+{{{id=9|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Even the simplest solution can be large &nbsp; &nbsp;</span></span></p>
+<p><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/stoll.png" alt="" width="319" /></p>
+<p>Simplest solution to $y^2=x^3+7823$:</p>
+<p><span style="font-size: x-large;">$$x = \frac{2263582143321421502100209233517777}{143560497706190989485475151904721}$$</span></p>
+<p><span style="font-size: x-large;">$$y = \frac{186398152584623305624837551485596770028144776655756}{1720094998106353355821008525938727950159777043481}$$</span></p>
+<p>(Found by Michael Stoll in 2002.)</p>
+<p>&nbsp;</p>
+
+{{{id=68|
+
+///
+}}}
+
+{{{id=70|
+
+///
+}}}
+
+{{{id=69|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">The Rank</span></span></p>
+<p>The <strong>rank</strong> of $E$ is the number of independent solutions of infinite order.<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rank($E$) = 0 means there are finitely many solutions.</p>
+<p><strong>Example:</strong> Curve $E(a)$: with equation $y(y+1) = x(x-1)(x+a)$. <br />Has rank = 0, 1, 2, 3, 4, 5, 6 for a = 0, 1, 2, 4, 16, 79, 298.</p>
+
+{{{id=29|
+@interact
+def _(a=(2, (0..300))):
+    E = EllipticCurve([0,(a-1),1,-a,0])
+    html("<center><font size=+1>$y(y+1)=x(x-1)(x+%s)$,    rank = %s</font>"%(a,E.rank()))
+    v = E.gens()
+    v = [(t[0],t[1]) for t in v]
+    G = E.plot(thickness=3, plot_points=600)
+    xmin = min(G.xmin(), min(t[0] for t in v+[(0,0)]))
+    xmax = max(G.xmax(), max(t[0] for t in v+[(-xmin/2,0)]))
+    G = E.plot(thickness=3, xmin=xmin, xmax=xmax, plot_points=600)
+    G += points([(t[0],t[1]) for t in v], color='black', pointsize=50, zorder=50)
+    G.show(figsize=4, frame=True)
+    print v
+    html("</center>")
+///
+}}}
+
+{{{id=74|
+
+///
+}}}
+
+{{{id=73|
+
+///
+}}}
+
+{{{id=72|
+
+///
+}}}
+
+<p><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/elkies.png" alt="" width="140" /></p>
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">How big can the rank be?</span></span></p>
+<p>We don&rsquo;t know if the ranks of elliptic curves can be arbitrarily large.</p>
+<p>The current record is rank($E$) = 28 for <strong>Noam Elkies'</strong> curve $E$ below, with independent points:</p>
+<pre>P<sub>1</sub> = [-2124150091254381073292137463, 259854492051899599030515511070780628911531] 
+P<sub>2</sub> = [2334509866034701756884754537, 18872004195494469180868316552803627931531]
+P<sub>3</sub> = [-1671736054062369063879038663, 251709377261144287808506947241319126049131]
+P<sub>4</sub> = [2139130260139156666492982137, 36639509171439729202421459692941297527531]
+P<sub>5</sub> = [1534706764467120723885477337, 85429585346017694289021032862781072799531]
+P<sub>6</sub> = [-2731079487875677033341575063, 262521815484332191641284072623902143387531]
+P<sub>7</sub> = [2775726266844571649705458537, 12845755474014060248869487699082640369931]
+P<sub>8</sub> = [1494385729327188957541833817, 88486605527733405986116494514049233411451]
+P<sub>9</sub> = [1868438228620887358509065257, 59237403214437708712725140393059358589131]
+P<sub>10</sub> = [2008945108825743774866542537, 47690677880125552882151750781541424711531]
+P<sub>11</sub> = [2348360540918025169651632937, 17492930006200557857340332476448804363531]
+P<sub>12</sub> = [-1472084007090481174470008663, 246643450653503714199947441549759798469131] 
+P<sub>13</sub> = [2924128607708061213363288937, 28350264431488878501488356474767375899531] 
+P<sub>14</sub> = [5374993891066061893293934537, 286188908427263386451175031916479893731531]
+P<sub>15</sub> = [1709690768233354523334008557, 71898834974686089466159700529215980921631]
+P<sub>16</sub> = [2450954011353593144072595187, 4445228173532634357049262550610714736531]
+P<sub>17</sub> = [2969254709273559167464674937, 32766893075366270801333682543160469687531] 
+P<sub>18</sub> = [2711914934941692601332882937, 2068436612778381698650413981506590613531] 
+P<sub>19</sub> = [20078586077996854528778328937, 2779608541137806604656051725624624030091531]
+P<sub>20</sub> = [2158082450240734774317810697, 34994373401964026809969662241800901254731]
+P<sub>21</sub> = [2004645458247059022403224937, 48049329780704645522439866999888475467531]
+P<sub>22</sub> = [2975749450947996264947091337, 33398989826075322320208934410104857869131]
+P<sub>23</sub> = [-2102490467686285150147347863, 259576391459875789571677393171687203227531]
+P<sub>24</sub> = [311583179915063034902194537, 168104385229980603540109472915660153473931]
+P<sub>25</sub> = [2773931008341865231443771817, 12632162834649921002414116273769275813451] 
+P<sub>26</sub> = [2156581188143768409363461387, 35125092964022908897004150516375178087331] 
+P<sub>27</sub> = [3866330499872412508815659137, 121197755655944226293036926715025847322531] 
+P<sub>28</sub> = [2230868289773576023778678737, 28558760030597485663387020600768640028531] </pre>
+
+{{{id=25|
+E = EllipticCurve([1,-1,1,
+    -20067762415575526585033208209338542750930230312178956502,
+   34481611795030556467032985690390720374855944359319180361266008296291939448732243429])
+E
+///
+}}}
+
+{{{id=77|
+
+///
+}}}
+
+{{{id=75|
+
+///
+}}}
+
+{{{id=24|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">A Prediction</span></span></p>
+<p>Peter Swinnerton-Dyer and&nbsp;Bryan Birch made a prediction for the rank<br /> based on the <strong><em>average number of solutions at each prime number $p$</em></strong>.</p>
+<p style="text-align: center;"><img style="vertical-align: middle;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/weddingphoto.gif " alt="" width="400" /></p>
+
+{{{id=80|
+
+///
+}}}
+
+{{{id=183|
+
+///
+}}}
+
+{{{id=153|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;"><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/swinnerton_dyer-count.png" alt="" width="310" />Solutions Modulo $p$</span></span></p>
+<p>What do we mean by a solution of the cubic equation at the prime number $p$? <br /> Why are there finitely many solutions $A(p)$?</p>
+
+{{{id=88|
+@interact
+def _(p=(7,tuple(prime_range(500))), show_coords=False):
+    E = EllipticCurve([0,0,1,-1,0])
+    html('<center><font size=+1>$%s$ modulo $%s$<br>'%(latex(E),p))
+    if E.conductor()%p == 0:
+        html('<br><br>Curve has bad reduction...')
+    else:
+        html('<font color="blue" size=+1>$\\infty$</font><br>')
+        G = E.change_ring(GF(p)).plot(pointsize=50)
+        G.show(gridlines=True, figsize=4, frame=True, axes=False)
+        if show_coords:
+            print ', '.join(['(%s,%s)'%(z[0],z[1]) if z[2] else 'infinity' 
+                  for z in E.change_ring(GF(p)).points()])
+    html('<br>$A(%s) = %s$'%(p,p+1-E.ap(p)))
+    html('</font></center>')
+///
+}}}
+
+{{{id=158|
+
+///
+}}}
+
+{{{id=21|
+
+///
+}}}
+
+<p><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/hasse.png" alt="" height="200/" /></p>
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">The $L$-Function</span></span></p>
+<p>Hasse proved: $p+1 - 2\sqrt{p} &lt; A(p) &lt; p+1 + 2\sqrt{p}$</p>
+<p>It is common to write: $A(p) = p+1-a(p)$</p>
+<p>and to define the $L$-function of $E$ by the infinite product $$  L(E,s) = \prod_p (1-a(p)p^{-s}+p^{1-2s})^{-1} = \sum a(n) n^{-s} $$</p>
+<p>This only makes sense as a function when $s&gt;3/2$, where the product converges.</p>
+
+{{{id=92|
+E = EllipticCurve([0,0,1,-1,0])
+L = E.lseries().dokchitser(20)
+html('<h3>$L$-series of $%s$</h3>'%(latex(E)))
+G = line([(s,L(s).real()) for s in [3/2, 3/2+0.2, .., 8]])
+G += text('?', (.6,.1), color='red', fontsize=26)
+G.show(xmin=-1, ymin=-.1, figsize=4, frame=True, gridlines=True)
+///
+}}}
+
+{{{id=199|
+
+///
+}}}
+
+{{{id=91|
+
+///
+}}}
+
+{{{id=90|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">The $L$-function at 1</span></span></p>
+<p>If we formally set $s = 1$ in the product, we get $$ \prod_p(1 - a(p)p^{-1} + p^{-1})^{-1} = \prod_p \frac{p}{A(p)} $$</p>
+<p>If $A(p)$ is large on average compared with $p$, this product will approach zero. &nbsp;The larger $A(p)$ is on average, the faster it will tend to zero.</p>
+
+{{{id=97|
+@interact
+def _(E = ['y^2 + y = x^3 - x^2', 'y^2 + y = x^3 - x', 'a rank 4 curve', 'elkies rank>=28 curve']):
+    if E == 'y^2 + y = x^3 - x^2':
+        E = EllipticCurve([0,-1,1,0,0])
+        r = E.rank()
+    elif E == 'y^2 + y = x^3 - x':
+        E = EllipticCurve([0,0,1,-1,0])
+        r = E.rank()
+    elif E == 'a rank 4 curve':
+        E = EllipticCurve([1, -1, 0, -79, 289])
+        r = 4
+    elif E == 'elkies rank>=28 curve':
+        E = EllipticCurve([1,-1,1,
+    -20067762415575526585033208209338542750930230312178956502,
+    34481611795030556467032985690390720374855944359319180361266008296291939448732243429])
+        r = ">=28"
+        
+    L_approx = 1
+    print '%4s%6s%5s%9s%20s'%('p', 'A(p)', 'p/Ap', '  prod p/Ap', 'Rank = %s'%r)
+    v = []
+    t = ''
+    for p in primes(500):
+        if E.discriminant()%p:
+            Ap = p+1-E.ap(p)
+            L_approx *= float(p/Ap)
+            t += '%4s%4s%8.3f%8.3f\n'%(p, Ap, float(p/Ap), L_approx)
+            v.append((p, L_approx))
+    print t
+    line(v).show(figsize=[8,2])
+///
+}}}
+
+{{{id=160|
+
+///
+}}}
+
+{{{id=159|
+
+///
+}}}
+
+{{{id=138|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;"><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/birch_and_swinnerton-dyer.png" alt="" width="300" />Birch and Swinnerton-Dyer's Precise Conjecture</span></span></p>
+<ol>
+<li><span style="font-size: large;"> The function $L(E,s)$ has an analytic continuation to a neighborhood of $s = 1$. <br /><br /></span></li>
+<li><span style="font-size: large;"> The order of vanishing at $s = 1$ is equal to the rank of $E$. </span></li>
+</ol>
+
+{{{id=166|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Tate's Refinement<img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/tate.png" alt="" width="175" /></span></span></p>
+<p><span style="font-size: large;">This conjecture was refined by John Tate, to give the leading term <br />in the Taylor expansion at $s = 1$&nbsp;in terms of other arithmetic<br />invariants of $E$.</span></p>
+<p><span style="font-size: xx-large;">$$ L(E,s) \sim c(E)\cdot (s-1)^{\text{rank}(E)}\qquad \text{as }s\to 1 $$</span></p>
+
+{{{id=104|
+
+///
+}}}
+
+{{{id=103|
+
+///
+}}}
+
+{{{id=45|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Analytic Continuation</span></span></p>
+<p>The analytic continuation was proved using the method of Andrew Wiles and Richard Taylor: the function $$   F(\tau) = \sum a(n) e^{2\pi i n\tau} $$ is a modular form.</p>
+<p><img style="float: left;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/wiles.png" alt="" height="160" /><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/taylor.png" alt="" height="160" /></p>
+
+{{{id=107|
+E = EllipticCurve([0,0,1,-1,0])
+L = E.lseries().dokchitser(30)
+complex_plot(L, (-1,3), (-1,1), plot_points=30)
+///
+}}}
+
+{{{id=106|
+
+///
+}}}
+
+{{{id=51|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Work of Gross-Zagier and Kolyvagin when $r=0$ and $r=1$</span></span></p>
+<p>Combining work of Benedict Gross and Don Zagier with work of Victor Kolyvagin, one can show:</p>
+<ul>
+<li>If $L(E,1)\neq 0$ the rank is zero.<br /><br /></li>
+<li>If $L(E,1)=0$ and $L'(E,1)\neq 0$ the rank is one.</li>
+</ul>
+<p><img style="float: left;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/gross.png" alt="" height="300" /> <img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/koly.png" alt="" height="300" /></p>
+<p style="text-align: center;"><img style="border-style: initial; border-color: initial; vertical-align: middle;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/zagier.png" alt="" height="300" /></p>
+
+{{{id=172|
+
+///
+}}}
+
+{{{id=171|
+
+///
+}}}
+
+{{{id=170|
+
+///
+}}}
+
+{{{id=168|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">When $r=2$ and $r=3$<img style="float: right;" src="sage.png" alt="" width="245" height="65" /></span></span></p>
+<ul>
+<li>Can prove rank conjecture for specific curves one at a time using a computer.<br /><br /></li>
+</ul>
+
+{{{id=141|
+E = EllipticCurve([0, 1, 1, -2, 0])
+E.rank()
+///
+}}}
+
+{{{id=114|
+L = E.lseries(); L(1)
+///
+}}}
+
+{{{id=113|
+L.L1_vanishes()
+///
+}}}
+
+{{{id=140|
+L.taylor_series()
+///
+}}}
+
+{{{id=174|
+
+///
+}}}
+
+{{{id=173|
+
+///
+}}}
+
+{{{id=112|
+
+///
+}}}
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">When $r\geq 4$</span></span></p>
+<p>Conjecture not proved for even a single elliptic curve.  <br /><br /> Do <strong><em>not</em></strong> know conjecture for this rank $4$ curve:&nbsp;$y^2 + xy = x^3 - x^2 - 79x + 289$</p>
+<p>Proving the conjecture for this particular curve would be a <strong><em>major result</em></strong>.</p>
+
+{{{id=57|
+E = EllipticCurve([1, -1, 0, -79, 289])
+L = E.lseries(); L.taylor_series()
+///
+5.54631009473167e-24 + (-2.08951550639391e-23)*z + (-4.15704192504384e-22)*z^2 + (1.66720224204167e-21)*z^3 + 8.94384739590089*z^4 - 33.6950287693207*z^5 + O(z^6)
+}}}
+
+{{{id=118|
+L = E.lseries().dokchitser(20)
+eps = 0.025
+G = line([(s,L(s).real()) for s in [-0.1,-0.1+eps, .., 4]])
+G.show(figsize=[6,2], frame=True, gridlines=True, ymin=-1, ymax=10)
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_5.py", line 10, in <module>
+    exec compile(u'open("___code___.py","w").write("# -*- coding: utf-8 -*-\\n" + _support_.preparse_worksheet_cell(base64.b64decode("TCA9IEUubHNlcmllcygpLmRva2NoaXRzZXIoMjApCmVwcyA9IDAuMDI1CkcgPSBsaW5lKFsocyxMKHMpLnJlYWwoKSkgZm9yIHMgaW4gWy0wLjEsLTAuMStlcHMsIC4uLCA0XV0pCkcuc2hvdyhmaWdzaXplPVs2LDJdLCBmcmFtZT1UcnVlLCBncmlkbGluZXM9VHJ1ZSwgeW1pbj0tMSwgeW1heD0xMCk="),globals())+"\\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/tmp/tmp3a8hfi/___code___.py", line 3, in <module>
+    L = E.lseries().dokchitser(_sage_const_20 )
+NameError: name 'E' is not defined
+}}}
+
+{{{id=176|
+
+///
+}}}
+
+{{{id=175|
+
+///
+}}}
