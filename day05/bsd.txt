@@ -1,7 +1,10 @@
 Day 5: The Birch and Swinnerton-Dyer Conjecture -- overview
 
-{{{
+{{{id=1|
+
+///
 }}}
+
 <p>&nbsp;</p>
 <p style="text-align: center;"><span style="color: #3333b3;"><span style="font-size: xx-large;"><strong>The Birch and Swinnerton-Dyer Conjecture</strong></span></span></p>
 <p style="text-align: center;"><span style="color: #3333b3;"><span style="font-size: x-large;"><strong><span style="font-size: x-large;"><span style="color: #333333;"><span style="font-size: large;"><br /></span></span></span></strong></span></span></p>
@@ -56,70 +59,6 @@ def _(t=(1/16,1/8,..,1)):
     G.show(aspect_ratio=1, ymax=1.4, xmax=2, fontsize=0, figsize=6)
     html('</center>')
 ///
-<html><!--notruncate-->
-        <div padding=6 id="div-interact-6">
-          <table width=800px height=20px bgcolor="#c5c5c5" cellpadding=15>
-            <tr>
-              <td bgcolor="#f9f9f9" valign=top align=left>
-            <table>
-              <tr><td colspan=3><table><tr><td align=right><font color="black">t&nbsp;</font></td><td>
-        <table>
-          <tr>
-            <td>
-              <div id="slider-t-6" style="margin:0px; margin-left: 1.0em; margin-right: 1.0em; width: 15.0em;"></div>
-            </td>
-            
-            <td>
-              <font color="black" id="slider-t-6-lbl"></font>
-            </td>
-          </tr>
-        </table><script>
-    (function() {
-        var values = ["1/16","1/8","3/16","1/4","5/16","3/8","7/16","1/2","9/16","5/8","11/16","3/4","13/16","7/8","15/16","1"];
-        setTimeout(function() {
-            $('#slider-t-6').slider({
-                step: 1,
-                min: 0,
-                max: 15,
-                value: 0,
-                change: function (e, ui) {
-                    var position = ui.value;
-                    if (values != null) {
-                        $('#slider-t-6-lbl').text(values[position]);
-                        interact(6, {variable: 't', adapt_number: 2, value: encode64(position)}, 1);
-                    }
-                },
-                slide: function (e, ui) {
-                    if (values != null) {
-                        $('#slider-t-6-lbl').text(values[ui.value]);
-                    }
-                }
-            });
-            if (values != null) {
-                $('#slider-t-6-lbl').text(values[$('#slider-t-6').slider('value')]);
-            }
-        }, 1);
-    })();
-    </script></td>
-</tr></table></td></tr>
-              <tr><td></td><td style='width: 100%;'>
-        <div id="cell-interact-6"><?__SAGE__START>
-          <table border=0 bgcolor="white" width=100%>
-            <tr>
-              <td bgcolor="white" align=left valign=top>
-                <pre><?__SAGE__TEXT></pre>
-              </td>
-            </tr>
-            <tr>
-              <td align=left valign=top><?__SAGE__HTML></td>
-            </tr>
-          </table><?__SAGE__END>
-        </div></td><td></td></tr>
-              <tr><td colspan=3></td></tr>
-            </table></td>
-            </tr>
-          </table>
-        </div></html>
 }}}
 
 {{{id=64|
@@ -215,8 +154,6 @@ G += points([(0,0), (1,-1)], color='black', pointsize=70, zorder=50)
 G += text("$(1,-1)$", (1.4,-.5), fontsize=16, color='black')
 G.show(gridlines=True, frame=True, figsize=[4,4], xmin=-2, xmax=3)
 ///
-<html><font color='black'><center><font size=+2><span class="math">y^2 + y = x^3 - x </span></font></center></font></html>
-<html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
 
 {{{id=12|
@@ -235,7 +172,7 @@ G.show(gridlines=True, frame=True, figsize=[4,4], xmin=-2, xmax=3)
 def _(n=(1..65)):
     E = EllipticCurve([0,0,1,-1,0])
     P = E([0,0])
-    show((n*P)[0])
+    print (n*P)[0]
 ///
 }}}
 
@@ -259,22 +196,13 @@ def _(n=(1..65)):
 ///
 }}}
 
-{{{id=210|
-
-///
-}}}
-
-{{{id=9|
-
-///
-}}}
-
 <p><span style="color: #3333b3;"><span style="font-size: x-large;">Even the simplest solution can be large &nbsp; &nbsp;</span></span></p>
-<p><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/stoll.png" alt="" width="319" /></p>
+<p>&nbsp;</p>
 <p>Simplest solution to $y^2=x^3+7823$:</p>
 <p><span style="font-size: x-large;">$$x = \frac{2263582143321421502100209233517777}{143560497706190989485475151904721}$$</span></p>
 <p><span style="font-size: x-large;">$$y = \frac{186398152584623305624837551485596770028144776655756}{1720094998106353355821008525938727950159777043481}$$</span></p>
 <p>(Found by Michael Stoll in 2002.)</p>
+<p><img src="https://github.com/williamstein/simuw12/raw/master/day05/data/stoll.png" alt="" width="319" /></p>
 <p>&nbsp;</p>
 
 {{{id=68|
@@ -415,7 +343,7 @@ def _(p=(7,tuple(prime_range(500))), show_coords=False):
     if E.conductor()%p == 0:
         html('<br><br>Curve has bad reduction...')
     else:
-        html('<font color="blue" size=+1>$\\infty$</font><br>')
+        html('<font color="blue" size=+1>infty</font><br>')
         G = E.change_ring(GF(p)).plot(pointsize=50)
         G.show(gridlines=True, figsize=4, frame=True, axes=False)
         if show_coords:
@@ -550,8 +478,8 @@ def _(E = ['y^2 + y = x^3 - x^2', 'y^2 + y = x^3 - x', 'a rank 4 curve', 'elkies
 ///
 }}}
 
-<p><span style="color: #3333b3;"><span style="font-size: x-large;">Analytic Continuation</span></span></p>
-<p>The analytic continuation was proved using the method of Andrew Wiles and Richard Taylor: the function $$   F(\tau) = \sum a(n) e^{2\pi i n\tau} $$ is a modular form.</p>
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Analytic Continuation: The $L$-series makes sense everywhere</span></span></p>
+<p>The analytic continuation was proved using the method of Andrew Wiles and Richard Taylor: the function $$ F(\tau) = \sum a(n) e^{2\pi i n\tau} $$ is a modular form.</p>
 <p><img style="float: left;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/wiles.png" alt="" height="160" /><img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/taylor.png" alt="" height="160" /></p>
 
 {{{id=107|
@@ -600,7 +528,7 @@ complex_plot(L, (-1,3), (-1,1), plot_points=30)
 ///
 }}}
 
-<p><span style="color: #3333b3;"><span style="font-size: x-large;">When $r=2$ and $r=3$<img style="float: right;" src="sage.png" alt="" width="245" height="65" /></span></span></p>
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">When $r=2$ and $r=3$<br /></span></span></p>
 <ul>
 <li>Can prove rank conjecture for specific curves one at a time using a computer.<br /><br /></li>
 </ul>
@@ -649,7 +577,6 @@ L.taylor_series()
 E = EllipticCurve([1, -1, 0, -79, 289])
 L = E.lseries(); L.taylor_series()
 ///
-5.54631009473167e-24 + (-2.08951550639391e-23)*z + (-4.15704192504384e-22)*z^2 + (1.66720224204167e-21)*z^3 + 8.94384739590089*z^4 - 33.6950287693207*z^5 + O(z^6)
 }}}
 
 {{{id=118|
@@ -658,15 +585,6 @@ eps = 0.025
 G = line([(s,L(s).real()) for s in [-0.1,-0.1+eps, .., 4]])
 G.show(figsize=[6,2], frame=True, gridlines=True, ymin=-1, ymax=10)
 ///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_5.py", line 10, in <module>
-    exec compile(u'open("___code___.py","w").write("# -*- coding: utf-8 -*-\\n" + _support_.preparse_worksheet_cell(base64.b64decode("TCA9IEUubHNlcmllcygpLmRva2NoaXRzZXIoMjApCmVwcyA9IDAuMDI1CkcgPSBsaW5lKFsocyxMKHMpLnJlYWwoKSkgZm9yIHMgaW4gWy0wLjEsLTAuMStlcHMsIC4uLCA0XV0pCkcuc2hvdyhmaWdzaXplPVs2LDJdLCBmcmFtZT1UcnVlLCBncmlkbGluZXM9VHJ1ZSwgeW1pbj0tMSwgeW1heD0xMCk="),globals())+"\\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-  File "/tmp/tmp3a8hfi/___code___.py", line 3, in <module>
-    L = E.lseries().dokchitser(_sage_const_20 )
-NameError: name 'E' is not defined
 }}}
 
 {{{id=176|
