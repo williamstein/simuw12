@@ -47,7 +47,7 @@ def _(t=(1/16,1/9,..,1)):
     x,y,t=var('x,y,t')
     print [x==(1-t^2)/(1+t^2), y==2*t/(1+t^2)]
     t = t0
-    print "Rational right triangle with sides (%s,%s,%s) and\narea=%s=%s"%(
+    print "Rational right triangle with sides (%s,%s,%s) and\narea = %s = %s"%(
              1-t^2, 2*t, 1+t^2, t*(1-t^2), factor(t*(1-t^2)))
     (x,y) = ((1-t^2)/(1+t^2), 2*t/(1+t^2))
     a = 1/3
