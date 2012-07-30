@@ -1,16 +1,17 @@
-SIMUW 2012 -- Riemann Hypothesis
-================================
+SIMUW 2012 -- The Riemann Hypothesis and the Birch and Swinnerton-Dyer Conjecture
+=================================================================================
 
 Resources
 ---------
   * The book [What is Riemann's Hypothesis?](http://wstein.org/rh/)
-  * [Sage Notebook Server](http://simuw.sagenb.org)
+  * [SIMUW Sage Notebook Server](http://simuw.sagenb.org)
   * [Sage Website](http://sagemath.org/), [Tutorial](http://www.sagemath.org/doc/tutorial/)
   
 Course Goals
 ------------
   * Learn the powerful free open source math software system Sage.
   * Learn what the Riemann Hypothesis really is, and much interesting mathematics along the way: prime numbers, Fourier series, some advanced Calculus, and more.
+  * Learn what the Birch and Swinnerton-Dyer conjecture states, and something about what is known about it.
   
 NOTES
 =====
@@ -50,4 +51,8 @@ Day 4: The Riemann Spectrum
   * [Fourier Transform (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/fourier_transform.txt)
   * [The Spectrum of the Prime Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/spectrum_of_primes.txt)
   * [Fourier Transform and the Riemann Spectrum (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/fourier_riemann.txt)
-  * [Building $\pi(x)$ from the Spectrum (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/riemann_rk.txt)
+  * [Building pi(x) from the Spectrum (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day04/riemann_rk.txt)
+
+Day 5: Elliptic Curves and the Congruent Number Problem
+-------------------------------------------------------
+  * Handout number theory and general Sage [quickrefs](http://wiki.sagemath.org/quickref)
