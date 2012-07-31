@@ -60,4 +60,7 @@ Day 5: Elliptic Curves and the Congruent Number Problem
   * [Congruent Numbers and Elliptic Curves (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day05/cong_ec.txt)
   * [Deriving the bijection (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day05/bijection.txt)
   * [The Birch and Swinnerton-Dyer Conjecture (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day05/bsd.txt)
-  * [Perimeter Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day05/perim.txt)
+
+Day 6: ???
+-----------
+  * [Perimeter Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/perim.txt)
