@@ -1,0 +1,176 @@
+BSD and the Congruent Number Problem
+
+<p><strong>Implication of the Birch and Swinnerton-Dyer Conjecture: &nbsp; </strong>The curve $E$ has positive rank if and only if $L(E,1)=0$.</p>
+<p><strong><br /></strong></p>
+<p><strong>Congruent number problem:</strong>&nbsp; Decide whether or not a given integer $n$ (such as $2012$) is a the area of a rational right triangle.</p>
+<p><strong>Equivalent problem: </strong>Decide whether or not there are solutions to $y^2=x^3-n^2x$ with $y\neq 0$.</p>
+<p><strong>Equivalent problem: </strong>Decide whethr or not the <strong><em>rank</em></strong>&nbsp;of the elliptic curve $E_n: y^2=x^3-n^2x$ is positive.</p>
+<p><strong>Conjecturally equivalent problem (BSD Conjecture):</strong>&nbsp;Decide whether or not $L(E_n,1)=0$.&nbsp;</p>
+<p><strong>Obvious Question:</strong> ... so how can we decide whether or not $L(E_n,1)=0$???</p>
+<p>Can we even decide this?</p>
+
+{{{id=1|
+
+///
+}}}
+
+<p>We have that</p>
+<p>$$L(E,s) = \prod_{\text{bad $p$}} \frac{1}{1-a_p p^{-s}} \cdot \prod_{\text{good $p$}} \frac{1}{1-a_p p^{-s} + p^{1-2s}} = \sum_{n=1}^{\infty} \frac{a_n}{n^s}.$$</p>
+<p>The $a_n$ are determined by the $a_p$ recurssively. &nbsp;In particular, if $\gcd(n,m)=1$, then $a_{nm} = a_n a_m$, and if $p^r$ is a prime power (with $p$ "good"), then&nbsp;$$a_{p^r} = a_{p^{r-1}} \cdot a_p - p a_{p^{r-2}}.$$ &nbsp;For the bad $p$, we have $a_{p^r} = (a_p)^r$.&nbsp;</p>
+<p>The $a_n$ are easy to compute in Sage, by the way, as we'll see below.</p>
+<p>One approach is to use the following formula (which is a deep theorem):</p>
+<p><strong>Theorem</strong>: $$L(E,1) = (1+\varepsilon) \sum_{n=1}^{\infty} \frac{a_n}{n} e^{-2\pi n /\sqrt{N}}$$&nbsp;where $\varepsilon=\pm 1$ is the root number of $E$ and the integer $N$ is the conductor. &nbsp;</p>
+<p>The condcutor and root numbers are unfortunately both fairly difficult to precisely define, but at least they are trivial to compute using Sage. &nbsp;</p>
+
+{{{id=8|
+factor(2012)
+///
+}}}
+
+{{{id=7|
+E = EllipticCurve([-503^2,0]); E
+///
+}}}
+
+{{{id=5|
+N = E.conductor(); N
+///
+}}}
+
+{{{id=4|
+eps = E.root_number(); eps
+///
+}}}
+
+<p>The above implies that $L(E,1)=0$, since $(1+\varepsilon)=1+(-1) = 0$, and nothing further need be done. &nbsp;So 2012 is the area of a rational right triangle!</p>
+
+{{{id=25|
+E.gens()   # find points on E
+///
+}}}
+
+{{{id=24|
+gens = E.gens(descent_second_limit=13); gens
+///
+}}}
+
+{{{id=27|
+def f(a,b,c):
+    n = a*b/2
+    return (-n*b/(a+c), 2*n^2/(a+c))
+def g(x,y):
+    n = sqrt(abs((y^2-x^3)/x))
+    return ((n^2-x^2)/y, -2*x*n/y, (n^2+x^2)/y)
+///
+}}}
+
+{{{id=28|
+a,b,c = g(gens[0][0], gens[0][1]); a,b,c
+///
+}}}
+
+{{{id=26|
+a^2 + b^2 == c^2
+///
+}}}
+
+{{{id=29|
+a*b/2
+///
+}}}
+
+{{{id=30|
+2*a*2*b/2
+///
+}}}
+
+{{{id=32|
+
+///
+}}}
+
+{{{id=31|
+
+///
+}}}
+
+<p><strong>Next look at n=-1 &nbsp;(see the handout/homework):</strong></p>
+
+{{{id=3|
+E = EllipticCurve([-1^2,0]); E
+///
+}}}
+
+{{{id=10|
+N = E.conductor(); N
+///
+}}}
+
+{{{id=11|
+eps = E.root_number(); eps
+///
+}}}
+
+<p>We have to work still...</p>
+
+{{{id=12|
+a = E.anlist(10^3)
+sum(a[n]/n*math.exp(-2*pi*n/sqrt(N)) for n in [1..len(a)-1])
+///
+}}}
+
+<p>It's nonzero so we're done.</p>
+<p>(To be rigorous, we would use that $|a_n|\leq n$ to bound the tail end of the sum.)</p>
+
+{{{id=17|
+
+///
+}}}
+
+<p>Let's try $n=34$.</p>
+
+{{{id=16|
+E = EllipticCurve([-34^2,0]); E
+///
+}}}
+
+{{{id=14|
+N = E.conductor(); N
+///
+}}}
+
+{{{id=19|
+eps = E.root_number(); eps
+///
+}}}
+
+{{{id=20|
+a = E.anlist(10^3)
+sum(a[n]/n*math.exp(-2*pi*n/sqrt(N)) for n in [1..len(a)-1])
+///
+}}}
+
+<p>It is possible to prove that number is 0 via general methods, but they are very painful/slow.</p>
+<p>But in the special case of the congruent number curves, there is an amazing criterion for whether or not $L(E,1)=0$, due to Tunnell.</p>
+
+{{{id=21|
+E.rank()
+///
+}}}
+
+{{{id=36|
+
+///
+}}}
+
+{{{id=34|
+
+///
+}}}
+
+<p><strong>Preparedness Exercise:</strong>&nbsp; Following what we did above with 2012, figure out whether or not 2013 is a congruent number, and if so, find a rational right triangle with area 2013. &nbsp; What about 2014, 2015, etc.?</p>
+
+{{{id=22|
+
+///
+}}}
