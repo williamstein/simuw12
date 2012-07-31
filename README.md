@@ -63,4 +63,14 @@ Day 5: Elliptic Curves and the Congruent Number Problem
 
 Day 6: ???
 -----------
+  * If the TV/VCR works... watch [the Fermat movie](http://video.google.com/videoplay?docid=8269328330690408516)!
   * [Perimeter Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/perim.txt)
+  * Conjecture: E(Q) infinite if and only if L(E,1)=0
+  * Back to the congruent number curves: Tunnell's criterion for L(E,1)=0
+  * Applying Tunnell's criterion
+  * Handout -- [prove that 1 is not a congruent number](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/1.pdf)
+
+Day 7: Elliptic Curve Cryptogrpahy
+----------------------------------
+   
+
