@@ -1,0 +1,89 @@
+
+Day 6: Tunnell's Criterion
+
+<p>Tunnell gave an <strong>elementary-looking</strong> way to decide whether or not $L(E_n,1)=0$, where $E_n:y^2=x^3-n^2x$ is a congruent number curve.&nbsp;</p>
+<p>It uses <strong>modular forms</strong>.</p>
+<p>Let $$\Theta(q) = 1 + 2\sum_{m\geq 1} q^{m^2} = 1 + 2q + 2q^{4} + 2q^{9} + \cdots.$$ Let $$f_1 = \Theta(q)\cdot (2\Theta(q^{32}) - \Theta(q^8))\cdot \Theta(q^2)$$ and $$f_2 = \Theta(q) \cdot (2\Theta(q^{32}) - \Theta(q^8))\cdot \Theta(q^4).$$</p>
+<p><strong>Theorem (</strong>Waldspurger, Tunnell) <em>Suppose $n$ is a squarefree integer. If $n$ is odd then $L(E_n,1)=0$ if and only if the $n$th coefficient of $f_1$ is $0$. If $n$ is even then $L(E_n,1)=0$ if and only if the $\frac{n}{2}$th coefficient of $f_2$ is $0$.</em></p>
+<p>&nbsp;</p>
+<p>This is a <em><strong>very deep theorem</strong></em>. It allows us to determine whether or not $L(E_n,1)=0$. The Birch and Swinnerton-Dyer conjecture (which is not a theorem) then asserts that $L(E_n,1)=0$ if and only if $n$ is a congruent number. Thus once enough of the Birch and Swinnerton-Dyer conjecture is proved, we'll have an elementary way to decide whether or not a (squarefree) integer $n$ is a congruent number. Namely, if $n$ is odd then (conjecturally) $n$ is a congruent number if and only if $$\#\left\{x,y,z\in\ZZ \,:\, 2x^2 + y^2 + 32z^2 = n\right\} = \frac{1}{2} \#\left\{x,y,z\in\ZZ \,:\, 2x^2 + y^2 + 8z^2 = n\right\}. $$ Simiarly, if $n$ is even then (conjecturally) $n$ is a congruent number if and only if $$\#\left\{x,y,z\in\ZZ \,:\, 4x^2 + y^2 + 32z^2 = \frac{n}{2}\right\} = \frac{1}{2} \#\left\{x,y,z\in\ZZ \,:\, 4x^2 + y^2 + 8z^2 = n\right\}. $$</p>
+
+{{{id=1|
+def cong_number_sets(n):
+    """
+    Given a positive integer n, returns the two sets appearing in the
+    conjectural criterion for when a number is congruent.
+    """
+    n = ZZ(n)
+    n = ZZ(prod([p for p, e in n.factor() if e%2 == 1]))
+    
+    if n % 2 == 0:   # even case
+        E = []       # with c even
+        O = []       # with c odd
+        a_bound = floor(sqrt(n/8) + 1)
+        c_bound = floor(sqrt(n)/4 + 1)
+        half_n = n//2
+        for c in range(-c_bound, c_bound+1):
+            c_square = c^2
+            for a in range(-a_bound, a_bound+1):
+                a_square = a^2
+                z = half_n - 4*a_square - 8*c_square
+                try:
+                    b = z.sqrt(extend=False)
+                    if b.denominator() == 1:
+                        b = b.numerator()
+                        assert 4*a^2 + b^2 + 8*c^2 == n/2
+                        if c % 2 == 0:
+                            E.append((a,b,c))
+                        else:
+                            O.append((a,b,c))
+                except ValueError:
+                    pass
+    else:
+        E = []       # with c even
+        O = []       # with c odd
+        a_bound = floor(sqrt(n/2)+1)
+        c_bound = floor(sqrt(n/8) + 1)
+        for c in range(-c_bound, c_bound+1):
+            c_square = c^2
+            for a in range(-a_bound, a_bound+1):
+                a_square = a^2
+                z = n - 2*a_square - 8*c_square
+                try:
+                    b = z.sqrt(extend=False)
+                    if b.denominator() == 1:
+                        b = b.numerator()
+                        assert 2*a^2 + b^2 + 8*c^2 == n
+                        if c % 2 == 0:
+                            E.append((a,b,c))
+                        else:
+                            O.append((a,b,c))
+                except ValueError:
+                    pass
+    return E, O
+
+def is_conj_cong_number(n):
+    """
+    Returns True if n is conjecturally a congruent number, according
+    to the Birch and Swinnerton-Dyer conjecture.
+    """
+    E, O = cong_number_sets(n)
+    return len(E) == len(O)
+///
+}}}
+
+{{{id=3|
+time is_conj_cong_number(2012)
+///
+}}}
+
+{{{id=4|
+for n in [1..2020]:
+    if is_conj_cong_number(n): print n,
+///
+}}}
+
+{{{id=5|
+
+///
+}}}
