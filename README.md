@@ -61,15 +61,13 @@ Day 5: Elliptic Curves and the Congruent Number Problem
   * [Deriving the bijection (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day05/bijection.txt)
   * [The Birch and Swinnerton-Dyer Conjecture (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day05/bsd.txt)
 
-Day 6: ???
------------
+Day 6: Modular forms, elliptic curves, and the Congruent number problem
+-----------------------------------------------------------------------------
   * If the TV/VCR works... watch [the Fermat movie](http://video.google.com/videoplay?docid=8269328330690408516)!
   * [Perimeter Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/perim.txt)
   * [BSD and the Congruent Number Problem (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/bsd_cong.txt)
   * [Tunnell's criterion (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/tunnell.txt)
   * [Handout: prove that 1 is not a congruent number](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/1.pdf)
 
-Day 7: Elliptic Curve Cryptogrpahy
-----------------------------------
    
 
