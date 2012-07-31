@@ -67,7 +67,7 @@ Day 6: Modular forms, elliptic curves, and the Congruent number problem
   * [Perimeter Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/perim.txt)
   * [BSD and the Congruent Number Problem (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/bsd_cong.txt)
   * [Tunnell's criterion (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/tunnell.txt)
-  * [Handout: prove that 1 is not a congruent number](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/1.pdf)
+  * [Handout: prove that 1 is not a congruent number](https://raw.github.com/williamstein/simuw12/master/day06/1.pdf)
 
    
 
