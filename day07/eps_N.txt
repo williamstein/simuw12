@@ -1,0 +1,189 @@
+Day 7: What are epsilon and N for the congruent number curves
+
+<p>Motivating question: "<em>what proportion of positive integers are congruent numbers?</em>"</p>
+<p><strong>The Situation:</strong></p>
+<ul>
+<li>a number $n$ is a <strong><em>congruent number</em></strong>&nbsp;if it is the area of a rational right triangle</li>
+<li>$n$ is a congruent number if and only if the elliptic curve $E_n: y^2=x^3-n^2x$ has positive rank (if and only if it has any solutions with $y\neq 0$)</li>
+<li>the BSD (Birch and Swinnerton-Dyer) conjecture asserts that $E_n$ has positive rank if and only if $L(E_n,1)=0$.</li>
+<li>Tunnell's criterion gives an elementary looking recipe for whether or not $L(E_n,1)=0$. &nbsp;Though reasonably efficient, it is difficult to use to answer certain questions..</li>
+<li>we have a formula: $L(E_n,1) = (1+\varepsilon) \sum_{n=1}^{\infty} \frac{a_n}{n} e^{-2\pi n /\sqrt{N}}$&nbsp;where $\varepsilon=\pm 1$ is the "root number" of $E_n$, the integer $N$ is the "conductor" of $E_n$, and $a_p = p+1-\#E(F_p)$ (and there is a recurrence for $a_n$).</li>
+</ul>
+
+{{{id=2|
+def eps(n):
+    return EllipticCurve([-n^2,0]).root_number()
+def N(n):
+    return EllipticCurve([-n^2,0]).conductor()
+///
+}}}
+
+{{{id=5|
+factor(N(1))
+///
+}}}
+
+{{{id=1|
+for p in primes(50):
+    print p, eps(p), p%8
+///
+}}}
+
+{{{id=4|
+for n in [1..50]:
+    if n.is_squarefree():
+        print n, eps(n), n%8
+///
+}}}
+
+{{{id=6|
+for n in [1..1000]:
+    if n.is_squarefree():
+        if n%8 in [5,6,7]:
+            assert eps(n) == -1
+        elif n%8 in [1,2,3]:
+            assert eps(n) == 1
+///
+}}}
+
+<p><strong>In Fact: </strong>Let $n$ be a squarefree integer. &nbsp;One can prove that the root number $\varepsilon$ of $E_n$ is $-1$ if $n\equiv 5,6,7\pmod{n}$ and $+1$ if $n\equiv 1,2,3$.</p>
+<p><strong>Consequence:</strong> &nbsp;If the BSD conjecture is true, then every $n\equiv 5,6,7\pmod{n}$ <strong><em>must</em></strong>&nbsp;be a congruent number, automatically.&nbsp;</p>
+
+<p>Next, what about $N$?</p>
+
+{{{id=7|
+for n in [1..20]:
+    if n.is_squarefree():
+        print n, N(n)/32
+///
+}}}
+
+{{{id=11|
+for n in [1..20]:
+    if n.is_squarefree():
+        print '%20s%20s'%(factor(n), factor(N(n)/32))
+///
+}}}
+
+<p><strong>In fact:</strong>&nbsp;One can prove that: $N(n)$ is $32 n^2$ when $n$ is odd and $16n^2$ when $n$ is even.</p>
+
+{{{id=12|
+for n in [1..1000]:
+    if n.is_squarefree():
+        if is_odd(n):
+            assert N(n) == 32*n^2, n
+        else:
+            assert N(n) == 16*n^2, n
+///
+}}}
+
+{{{id=15|
+
+///
+}}}
+
+<p>Recall, above that:</p>
+<p><strong>&nbsp; &nbsp;Consequence:</strong>&nbsp;&nbsp;If the BSD conjecture is true, then every $n\equiv 5,6,7\pmod{n}$&nbsp;<strong><em>must</em></strong>&nbsp;be a congruent number, automatically.&nbsp;</p>
+<p>Noam Elkies verified this consequence for all $n&lt;10^6$. &nbsp;Find this at <a href="http://www.math.harvard.edu/~elkies/compnt.html" target="_blank">his page</a>.&nbsp;</p>
+<p>What about $n\equiv 1,2,3\pmod{8}$?</p>
+
+{{{id=14|
+%hide
+def cong_number_sets(n):
+    """
+    Given a positive integer n, returns the two sets appearing in the
+    conjectural criterion for when a number is congruent.
+    """
+    n = ZZ(n)
+    n = ZZ(prod([p for p, e in n.factor() if e%2 == 1]))
+    
+    if n % 2 == 0:   # even case
+        E = []       # with c even
+        O = []       # with c odd
+        a_bound = floor(sqrt(n/8) + 1)
+        c_bound = floor(sqrt(n)/4 + 1)
+        half_n = n//2
+        for c in range(-c_bound, c_bound+1):
+            c_square = c^2
+            for a in range(-a_bound, a_bound+1):
+                a_square = a^2
+                z = half_n - 4*a_square - 8*c_square
+                try:
+                    b = z.sqrt(extend=False)
+                    if b.denominator() == 1:
+                        b = b.numerator()
+                        assert 4*a^2 + b^2 + 8*c^2 == n/2
+                        if c % 2 == 0:
+                            E.append((a,b,c))
+                        else:
+                            O.append((a,b,c))
+                except ValueError:
+                    pass
+    else:
+        E = []       # with c even
+        O = []       # with c odd
+        a_bound = floor(sqrt(n/2)+1)
+        c_bound = floor(sqrt(n/8) + 1)
+        for c in range(-c_bound, c_bound+1):
+            c_square = c^2
+            for a in range(-a_bound, a_bound+1):
+                a_square = a^2
+                z = n - 2*a_square - 8*c_square
+                try:
+                    b = z.sqrt(extend=False)
+                    if b.denominator() == 1:
+                        b = b.numerator()
+                        assert 2*a^2 + b^2 + 8*c^2 == n
+                        if c % 2 == 0:
+                            E.append((a,b,c))
+                        else:
+                            O.append((a,b,c))
+                except ValueError:
+                    pass
+    return E, O
+
+def is_conj_cong_number(n):
+    """
+    Returns True if n is conjecturally a congruent number, according
+    to the Birch and Swinnerton-Dyer conjecture.
+    """
+    E, O = cong_number_sets(n)
+    return len(E) == len(O)
+///
+}}}
+
+{{{id=17|
+i=0; j=0
+for n in [1..5000]:
+    if n%8 in [1,2,3]:
+        if is_conj_cong_number(n):
+            i += 1
+        else:
+            j += 1
+print i,j               
+///
+}}}
+
+{{{id=20|
+289./1586
+///
+}}}
+
+<p>As you can see, <strong><em>usually</em></strong>&nbsp;$n$ is not a congruent number when $n\equiv 1,2,3\pmod{8}$, though it is nearly 20% of the time in our data...</p>
+<p><strong>Minimalist Conjecture: </strong>In the limit <strong>0%</strong> of the $n\equiv 1,2,3\pmod{8}$ are congruent numbers.&nbsp;</p>
+<p>(Though it will take a very, very long time to observe this.)</p>
+<p>Please see my paper&nbsp;<a href="http://www.wstein.org/papers/bmsw-rank/" target="_blank">Average Ranks of Elliptic Curves</a>.</p>
+
+<p>So....</p>
+<p><strong>Question:</strong> <em>What proportion of positive squarefree integers are congruent numbers?</em></p>
+<p>What do you think?</p>
+
+{{{id=22|
+
+///
+}}}
+
+{{{id=18|
+
+///
+}}}

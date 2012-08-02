@@ -69,5 +69,10 @@ Day 6: Modular forms, elliptic curves, and the Congruent number problem
   * [Tunnell's criterion (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day06/tunnell.txt)
   * [Handout: prove that 1 is not a congruent number](https://raw.github.com/williamstein/simuw12/master/day06/1.pdf)
 
-   
+Day 7: Congruent Numbers
+------------------------
+
+  * [Discussion and questions about the handout](https://raw.github.com/williamstein/simuw12/master/day06/1.pdf)
+  * [What are epsilon and N for the congruent number curves? (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/eps_N.txt)
+
 
