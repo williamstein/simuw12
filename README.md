@@ -76,5 +76,6 @@ Day 7: Congruent Numbers
   * [What are epsilon and N for the congruent number curves? (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/eps_N.txt)
   * [Heuristic idea behind the BSD Conjecture (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/bsd_heuristic.txt)
   * [How are the number of points modulo p distributed (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/sato_tate.txt)
+  * [Using elliptic curves to share secrets (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/ecc.txt)
 
 
