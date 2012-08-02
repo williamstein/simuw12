@@ -1,0 +1,151 @@
+Using elliptic curves to share a SECRET
+
+
+<p>Cryptography -- the art of sending secret messages (and of breaking secret codes) is extremely important these days, due to the internet. &nbsp;It turns out that elliptic curves are amazingly useful as tools to build cryptosystems; in some ways they seem to be better than any other idea so far! &nbsp;(Using elliptic curves in crypto was started by Neil Koblitz (a UW professor), and Victor Miller.)</p>
+<p>Here's one problem we can solve using elilptic curves modulo $p$.</p>
+<p><em><strong>Challenge:</strong></em> Think of one other person at SIMUW right now. &nbsp;Imagine that you and that one other person would like to both know a shared secret, which you will then use to encrypt further communication. &nbsp; &nbsp;You are allowed to send messages back and forth in order to agree on the secret, but everybody else at SIMUW gets to see everything you send back and forth. &nbsp;How can you do this in such a way that only you two know the shared secret, but nobody else can figure it out?</p>
+
+{{{id=3|
+
+///
+}}}
+
+<p><strong>Solution:</strong>&nbsp; Use the Diffie-Hellman key exchange on an elliptic curve modulo a prime $p$ such that $\#E({\bf F}_p)$ is divisible by a large prime.&nbsp;</p>
+<p>Huh?</p>
+<p>I'll illustrate this using a really small prime $p$. &nbsp;To make this secure, just make $p$ sufficiently bigger. &nbsp;</p>
+<p><strong>Step 1: </strong>Choose a prime $p$ and an elliptic curve $E$ mod $p$:</p>
+
+{{{id=4|
+set_random_seed(1)
+p = next_prime(randint(10^4,10^5),proof=False); p
+///
+}}}
+
+{{{id=2|
+E = EllipticCurve(GF(p), [randrange(p), randrange(p)])
+E.cardinality().factor()
+///
+}}}
+
+<p>Try again:</p>
+
+{{{id=1|
+E = EllipticCurve(GF(p), [randrange(p), randrange(p)])
+E.cardinality().factor()
+///
+}}}
+
+<p><strong>Step 2: </strong>Choose a random point $P$ on $E$. &nbsp;Everybody is told what $P$ is.</p>
+
+{{{id=7|
+P = E.random_point(); P
+///
+}}}
+
+<p><strong>Step 3:</strong>&nbsp;You choose a random number $n$ and compute and tell everybody $nP$. &nbsp;You key $n$ <strong><em>secret</em></strong>&nbsp;-- only you know $n$!!</p>
+
+{{{id=14|
+n = randrange(p)
+nP = n*P; nP
+///
+}}}
+
+<p><strong>Step 4: </strong>The other person chooses a random number $m$ and computes and tells everybody $mP$. &nbsp;They keep $m$ secret -- only they know $m$!!</p>
+
+{{{id=13|
+m = randrange(p)
+mP = m*P; mP
+///
+}}}
+
+<p><strong>Step 5: </strong>You compute $nmP = n(mP)$, which you can compute, since you (and only you) know $n$ and you (and everybody else) knows $mP$.</p>
+<p>At the same time, the other person computes $nmP = m(nP)$, which they can compute since they (and only they) know $m$, and everybody knows $nP$.</p>
+<p>Of course, $n(mP) = m(nP) = P + ... + P$ (nm summands), which is why this works. &nbsp;The shared secret is $nmP$.</p>
+
+{{{id=11|
+your_secret = n*mP
+their_secret = m*nP
+///
+}}}
+
+{{{id=10|
+your_secret == their_secret
+///
+}}}
+
+{{{id=9|
+your_secret
+///
+}}}
+
+<p>How might the other SIMUW students try to figure out the secret? &nbsp;They have to solve the "discrete log problem", which is: "given $nP$ and $P$, figure out what $n$ is".</p>
+<p>This is possible when $p$ is small, but people seem to believe it is ridiculously hard (e.g., end of the universe) when $p$ is large, so long as there isn't some clever trick that can be exploited (e.g., if $E({\bf F}_p)$ is a product of a bunch of small primes, then one can use group theory tricks.&nbsp;</p>
+<p>In our case, let's brute force crack the encryption:</p>
+
+{{{id=21|
+%time
+Q = 0
+for k in range(p):
+    if Q == nP:
+        print k
+        break
+    Q += P    
+///
+}}}
+
+{{{id=19|
+n
+///
+}}}
+
+{{{id=23|
+
+///
+}}}
+
+<p>If you make p bigger, then this becomes much, much more secure, and the shared secret is also bigger. &nbsp;You can then use your shared secret as input to a<a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank"> symmetric cipher such as AES</a>. &nbsp;</p>
+<p>AES is available in Sage:</p>
+
+{{{id=25|
+from Crypto.Cipher import AES
+from Crypto import Random
+
+key = str(your_secret)[:16]   # stupid way to get 16 bytes!
+iv = Random.new().read(AES.block_size)
+cipher = AES.new(key, AES.MODE_CFB, iv)
+msg = iv + cipher.encrypt(b'Attack at dawn')
+repr(msg)
+///
+}}}
+
+{{{id=18|
+cipher.decrypt(msg)
+///
+}}}
+
+{{{id=27|
+
+///
+}}}
+
+<p><strong>Exercise:</strong> Do everything above with a slightly bigger prime (maybe 1 or 2 more digits). See how much longer brute forcing $n$ takes.</p>
+<p>Exercise (takes at least 3 students): Actually share &nbsp;a secret with somebody else:</p>
+<ol>
+<li>Choose one of three of you to be the hacker/adversary.</li>
+<li>Using a small prime $p$ (say at most 5 digits), use the SIMUW facebook page or gmail chat or something to send nP and mP back and forth (in full view of the adversary), and agree on a secret key. &nbsp;</li>
+<li>The adversary should then figure out what your secret is by bruteforcing $n$ and computing $nmP$.</li>
+</ol>
+<p>Now do 2 and 3 above again, but with $p$ having 20 digits. &nbsp;The adversary will very, very likely fail in step 3.&nbsp;</p>
+
+{{{id=29|
+
+///
+}}}
+
+<p><strong>Addendum:</strong> There is a slightly more clever algorithm called <a href="http://en.wikipedia.org/wiki/Baby-step_giant-step" target="_blank">"baby-step giant step"</a> for computing $n$ given $P$ and $nP$. &nbsp; It's complexity is $O(\sqrt{p})$, so every time you add a digit to $p$, it takes over twice as long to run the algorithm. &nbsp;Thus even if it one has a very good baby-step giant-step algorithm, making $p$ have about 100 digits would make using it infeasable. &nbsp;&nbsp;</p>
+<p>That said, it could be that there is a better approach that is much faster; nobody has yet proved that there isn't.&nbsp;</p>
+
+{{{id=26|
+
+///
+}}}

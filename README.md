@@ -74,5 +74,7 @@ Day 7: Congruent Numbers
 
   * [Discussion and questions about the handout](https://raw.github.com/williamstein/simuw12/master/day06/1.pdf)
   * [What are epsilon and N for the congruent number curves? (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/eps_N.txt)
+  * [Heuristic idea behind the BSD Conjecture (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/bsd_heuristic.txt)
+  * (if time permits) [How are the number of points modulo p distributed (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/sato_tate.txt)
 
 

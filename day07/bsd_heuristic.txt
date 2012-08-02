@@ -1,0 +1,57 @@
+Day 7: Heuristic idea behind the BSD Conjecture
+
+<p>Now that we have seen how useful and powerful the BSD conjecture is, let's take a step back 50 years, and explore the key heuristic idea that led to it.</p>
+<p>Let $E: y^2=x^3+ax+b$ be an elliptic curve and let $E(\QQ)$ denote the abelian group of rational points on $E$.</p>
+<p><strong>Conjecture (consequence of BSD): </strong>The group $E(\QQ)$ is infinite if and only if $L(E,1)=0$.</p>
+<p>Recall that</p>
+<p>$$L(E,s) = \prod_{p\mid N} \frac{1}{1- a_p p^{-s}} \cdot \prod_{p\nmid N} \frac{1}{1-a_p p^{-s} + p^{1-2s}},$$</p>
+<p>where $N$ is the conductor of $E$, and $$a_p = p+1 - \#E({\bf F}_p)$$ is $p+1$ minus the number of points modulo $p$.</p>
+<p><strong>Heuristic: &nbsp;</strong>Ignore the finitely many bad factor with $p\mid N$ and substitue $s=1$ into the infinite product even though this doesn't really make sense (the product doesn't behave well), we get</p>
+<p>$$L(E,1) "=" \prod \frac{1}{1-a_p p^{-1} + p^{1-2}} = \prod \frac{p}{p - a_p + 1} =\prod \frac{p}{\#E({\bf F}_p)}.$$</p>
+<p>Finally, here is the heuristic idea: $E(\QQ)$ should be infinite if and only if the numbers $\#E({\bf F}_p)$ tend to be <strong><em>big</em></strong>&nbsp;on average. &nbsp;This is because the infinitely many elements of $E(\QQ)$ reduce (by reducing their $x$ and $y$ coordinates modulo $p$) to give lots of elements of $E({\bf F}_p)$, which makes&nbsp;$E({\bf F}_p)$ big. &nbsp; Having $\#E({\bf F}_p)$ big should be the same as $L(E,1)=0$... and a more precise measure of "how big" is encoded in ${\rm ord}_{s=1} L(E,s)$.</p>
+<p>Let's try it out!</p>
+
+{{{id=1|
+@interact
+def _(bound = (50..500), 
+     E = ['y^2 + y = x^3 - x^2 (rank 0)', 'y^2 + y = x^3 - x (rank 1)', 'a rank 4 curve', 'elkies rank 28 curve'],
+      your_own_curve='[]'):
+    v = [] if not your_own_curve else sage_eval(your_own_curve)
+    if len(v) > 0:
+        E = EllipticCurve(v) 
+    elif E == 'y^2 + y = x^3 - x^2 (rank 0)':
+        E = EllipticCurve([0,-1,1,0,0])
+    elif E == 'y^2 + y = x^3 - x (rank 1)':
+        E = EllipticCurve([0,0,1,-1,0])
+    elif E == 'a rank 4 curve':
+        E = EllipticCurve([1, -1, 0, -79, 289])
+    elif E == 'elkies rank 28 curve':
+        E = EllipticCurve([1,-1,1,
+    -20067762415575526585033208209338542750930230312178956502,
+    34481611795030556467032985690390720374855944359319180361266008296291939448732243429])
+        
+    print '%s\n'%E
+    L_approx = 1
+    v = []
+    t = ''
+    for p in primes(bound):
+        if E.discriminant()%p:
+            Ap = p+1-E.ap(p)
+            L_approx *= float(p/Ap)
+            t += '%4s%4s%10.3f%12.3f\n'%(p, Ap, float(p/Ap), L_approx)
+            v.append((p, L_approx))
+    line(v).show(figsize=[8,2], ymin=0, frame=True, gridlines=True)
+    print '%4s%6s%5s%9s'%('p ', '#E(F_p) ', 'p/#E(F_p)', '  prod p/#E(F_p)')
+    print t
+///
+}}}
+
+{{{id=3|
+ 
+///
+}}}
+
+{{{id=4|
+
+///
+}}}
