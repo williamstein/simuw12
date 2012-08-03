@@ -1,0 +1,73 @@
+
+Day 8: Remarks about the Generalized Riemann Hypothesis
+
+<p><span>Let $E$ be an elliptic curve, given by $y^2=x^3+ax+b$. &nbsp;There is an analogue of the Riemann Hypothesis for $E$.</span></p>
+<p><span>One analogue is the traditional assertion that the function $L(E,s)$ has all of its nontrivial zeros on the line $\Re(s)=1$. &nbsp;</span></p>
+
+{{{id=15|
+@interact
+def f(a=1,b=-1):
+    E = EllipticCurve([a,b])
+    print E
+    L = E.lseries()
+    zeros = L.zeros(5)
+    print zeros
+    set_verbose(-2)
+    g = complex_plot(L.dokchitser(10), (0,2), (0, zeros[-1]), plot_points=10)
+    g += points([(1,z) for z in zeros],pointsize=25, color='black', zorder=100)
+    show(g)
+///
+}}}
+
+{{{id=1|
+
+///
+}}}
+
+<p><span>Another (equivalent-ish) analogue that looks more like the good approximation to $\pi(x)$ that we studied last week. &nbsp;Let $r$ be the rank of $E$. &nbsp;Then there is a constant $c$ so that:</span></p>
+<p><span>$$\pi_E(x) := \sum_{p\le x}\frac{a_p}{p} &nbsp;= r\log(\log(x)) +c+o(1)$$ as $x \to \infty$</span></p>
+<p>Unfortunately, one can't really <strong><em>see</em></strong>&nbsp;this in the data, since $\log(\log(x))$ grows very slowly. &nbsp;</p>
+<p><strong>Joke:</strong> $\log(\log(x))$ goes to infinity, but this has never been observed.</p>
+
+{{{id=4|
+@interact
+def f(a=1,b=-1, B=(10,100,1000,10000,100000,1000000)):
+    E = EllipticCurve([a,b])
+    print E
+    r = E.analytic_rank()
+    print "rank = ", r
+    ap = E.aplist(B)            # the numbers a_p = p+1 - #E(F_p)
+        
+    def plot_pi(B, **kwds):
+        v = [(0,0)]
+        s = 0
+        for i,p in enumerate(prime_range(B)):
+            v.append( (p,s) )
+            s += float(ap[i])/float(p)
+            v.append( (p,s) )
+        return line(v, **kwds)
+    
+    plot_pi(B, figsize=[8,2]).show()
+///
+}}}
+
+{{{id=7|
+N(log(log(1e6)))
+///
+}}}
+
+{{{id=11|
+E = elliptic_curves.rank(4)[0]
+E.short_weierstrass_model().a_invariants()
+///
+}}}
+
+{{{id=13|
+plot(log(log(x)), (x,1,1000), figsize=[8,3])
+///
+}}}
+
+{{{id=16|
+
+///
+}}}
