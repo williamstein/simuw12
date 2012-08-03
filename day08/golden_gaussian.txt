@@ -1,0 +1,135 @@
+Day 8: Golden and Gaussian Congruent Numbers
+
+<p>In this worksheet we will generalize the idea of congruent numbers slightly and see what happens.</p>
+<p>The famous&nbsp;<em><strong>golden ratio</strong></em> is the real number $\phi = \frac{1+\sqrt{5}}{2}=1.6180339887...$. &nbsp;</p>
+<p>&nbsp;<strong>Exercise:</strong> Why is it called that? &nbsp;Look online, read about it, see some pictures, etc.&nbsp;</p>
+<p>A <strong>golden right triangle</strong> is one such that each side length is of the form $a+b\phi$, where $a$ and $b$ are rational numbers.&nbsp;</p>
+<p>A <strong>golden congruent number</strong> is an integer $n$ that is the area of a golden right triangle. &nbsp;</p>
+<p>Every usual congruent number is a golden congruent number, but of course there might be new golden congruent numbers that aren't usual congruent numbers. &nbsp;</p>
+
+{{{id=1|
+golden_ratio
+///
+}}}
+
+{{{id=3|
+N(golden_ratio, digits=100)
+///
+}}}
+
+<p>The algebra we did before shows that $n$ is a golden congruent number if and only if there is a solution to $$y^2=x^3-n^2x$$ but with $(x,y)$ each of the form $a+b\phi$ with $a,b$ rational.&nbsp;</p>
+<p>Is $1$ a golden congruent number?</p>
+
+{{{id=4|
+K.<phi> = NumberField(x^2-x-1)
+E = EllipticCurve(K, [-1,0])
+E
+///
+}}}
+
+{{{id=6|
+phi.complex_embeddings()
+///
+}}}
+
+{{{id=7|
+E.rank()
+///
+}}}
+
+{{{id=8|
+E.gens()
+///
+}}}
+
+{{{id=9|
+P = E([phi, -phi]); P
+///
+}}}
+
+{{{id=10|
+def f(a,b,c):
+    n = a*b/2
+    return (-n*b/(a+c), 2*n^2/(a+c))
+def g(x,y):
+    n = sqrt(abs((y^2-x^3)/x))
+    return ((n^2-x^2)/y, -2*x*n/y, (n^2+x^2)/y)
+///
+}}}
+
+{{{id=11|
+a,b,c = g(phi,-phi); a,b,c
+///
+}}}
+
+{{{id=12|
+a^2 + b^2 == c^2
+///
+}}}
+
+<p>Of course, the 1,2,$\sqrt{1^2+2^2}=\sqrt{5}$ golden right triangle!</p>
+<p>So $1$ is a golden congruent number, but not a congruent number. &nbsp;</p>
+<p>Is every integer a golden congruent number?&nbsp;</p>
+
+{{{id=13|
+K.<phi> = NumberField(x^2-x-1)
+E = EllipticCurve(K, [-4,0])
+E.rank()
+///
+}}}
+
+{{{id=15|
+E.torsion_order()
+///
+}}}
+
+{{{id=16|
+E = EllipticCurve([-4,0]).quadratic_twist(5)
+E.rank()
+///
+}}}
+
+{{{id=20|
+E
+///
+}}}
+
+<p><strong>Fact:</strong>&nbsp; using the theory of elliptic curves, it is easy for an expert to show that $n$ is a golden congruent number <strong>if and only if</strong> either $n$ or $5n$ is a congruent number. &nbsp;The reason (for experts): "<em>the group of points on $E_n$ over the field $\QQ(\sqrt{5})$ is (almost) the direct sum of the group of points on $E_n$ over $\QQ$ and the group of points on $E_{5n}$ over $\QQ$</em>."</p>
+<p>Is there a more elementary way to see the fact? &nbsp; I don't know. &nbsp; One direction is easy though: suppose $n$ or $5n$ is a congruent number. &nbsp; If $n$ is a congruent number, done. &nbsp;If $5n$ is a congruent number, just scale one of the corresponding triangles by $1/\sqrt{5}$ to see that $n$ is a golden congruent number. &nbsp; I don't see an elementary proof in the other direction...</p>
+<p>The analogue of the fact holds with $5$ replaced by any other squarefree positive integer. &nbsp;If $d$ is a squarefree integer, then $n$ is the area of a right triangle with side lengths of the form $a+b\sqrt{d}$ if and only if $n$ or $dn$ is a congruent number.</p>
+
+{{{id=18|
+
+///
+}}}
+
+<p>Another generalization we will call&nbsp;<strong>Gaussian congruent numbers,</strong>&nbsp;i.e., integers $n$ that are the area of a right triangle with side lengths of the form $a+b\sqrt{-1}$, with $a,b$ rational numbers. &nbsp;</p>
+<p>Is $1$ a Gaussian congruent number?&nbsp;</p>
+
+{{{id=23|
+def is_gaussian_cong_num(n):
+    # this code should *NOT* make sense to you
+    E = EllipticCurve([-n^2,0])
+    F = E.quadratic_twist(-1)
+    return E.analytic_rank() > 0 or F.analytic_rank() > 0
+///
+}}}
+
+{{{id=22|
+is_gaussian_cong_num(1)
+///
+}}}
+
+{{{id=24|
+for n in [1..19]:
+    print n, is_gaussian_cong_num(n)
+///
+}}}
+
+<p><strong>Fact: </strong>Using elliptic curve theory one can show that an integer $n\in{}\ZZ$ is a Gaussian congruent number if and only if it is a usual congruent number. &nbsp;&nbsp;</p>
+<p>Is there an elementary way to see the above fact? &nbsp;&nbsp; I don't know. &nbsp; One direction is easy: if $n$ is a usual congruent number, then it is certainly a Gaussian one.&nbsp;</p>
+
+{{{id=25|
+
+///
+}}}

@@ -78,4 +78,9 @@ Day 7: Congruent Numbers
   * [How are the number of points modulo p distributed (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/sato_tate.txt)
   * [Using elliptic curves to share secrets (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/ecc.txt)
 
+Day 8: Further Connections
+--------------------------
 
+  * [Elliptic curve Diffie-Hellman -- step-by-step tutorial (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day08/ecc2.txt)
+
+  * [Golden and Gaussian Congruent Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day08/golden_gaussian.txt)
