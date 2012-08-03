@@ -1,4 +1,4 @@
-Day 7:  How are the number of points mod p distributed?
+Day 8:  How are the number of points mod p distributed?
 
 <p>In the previous worksheet we fixed an elliptic curve $E: y^2=x^3+ax+b$ and considered the numbers $\#E({\rm F}_p)$ for many $p$. &nbsp;</p>
 <p>The <em><strong>heuristic idea</strong></em>&nbsp;behind the Birch and Swinnerton-Dyer conjecture is: $E(\QQ)$ should have positive rank (i.e., be really big) if and only if the numbers&nbsp;$\#E({\rm F}_p)$ tend to be big.&nbsp;</p>
