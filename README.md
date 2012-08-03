@@ -75,12 +75,13 @@ Day 7: Congruent Numbers
   * [Discussion and questions about the handout](https://raw.github.com/williamstein/simuw12/master/day06/1.pdf)
   * [What are epsilon and N for the congruent number curves? (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/eps_N.txt)
   * [Heuristic idea behind the BSD Conjecture (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/bsd_heuristic.txt)
-  * [How are the number of points modulo p distributed (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/sato_tate.txt)
   * [Using elliptic curves to share secrets (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/ecc.txt)
 
 Day 8: Further Connections
 --------------------------
 
   * [Elliptic curve Diffie-Hellman -- step-by-step tutorial (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day08/ecc2.txt)
-
+  * [How are the number of points modulo p distributed (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/sato_tate.txt)
   * [Golden and Gaussian Congruent Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day08/golden_gaussian.txt)
+  * [Some of what is known toward the BSD conjecture (click to create worksheet)]
+  * [The Generalized Riemann Hypothesis (click to create worksheet)]
