@@ -1,6 +1,6 @@
 Day 8:  How are the number of points mod p distributed?
 
-<p>In the previous worksheet we fixed an elliptic curve $E: y^2=x^3+ax+b$ and considered the numbers $\#E({\rm F}_p)$ for many $p$. &nbsp;</p>
+<p>We have fixed an elliptic curve $E: y^2=x^3+ax+b$ and considered the numbers $\#E({\rm F}_p)$ for many $p$. &nbsp;</p>
 <p>The <em><strong>heuristic idea</strong></em>&nbsp;behind the Birch and Swinnerton-Dyer conjecture is: $E(\QQ)$ should have positive rank (i.e., be really big) if and only if the numbers&nbsp;$\#E({\rm F}_p)$ tend to be big.&nbsp;</p>
 <p>If you see a bunch of numbers, the statistician in you might want to plot how they are <strong>distributed</strong>. &nbsp;</p>
 <p>For example, if you see a bunch of test scores, you might plot a frequency histrogram. &nbsp;Likewise, if you had data about a bunch of people's weights or heights you might plot a frequency histogram. &nbsp;The result might look like a "bell curve", and you could tease out optimal parameters for that curve by computing the mean and standard deviation.&nbsp;</p>
