@@ -83,5 +83,5 @@ Day 8: Further Connections
   * [Elliptic curve Diffie-Hellman -- step-by-step tutorial (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day08/ecc2.txt)
   * [How are the number of points modulo p distributed (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day07/sato_tate.txt)
   * [Golden and Gaussian Congruent Numbers (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day08/golden_gaussian.txt)
-  * [Some of what is known toward the BSD conjecture (click to create worksheet)]
+  * [Partial results toward the BSD conjecture (click to create worksheet)](http://simuw.sagenb.org/upload_worksheet?url=https://raw.github.com/williamstein/simuw12/master/day08/bsd2.txt)
   * [The Generalized Riemann Hypothesis (click to create worksheet)]

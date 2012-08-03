@@ -1,0 +1,64 @@
+Day 8: Partial results toward the BSD conjecture
+
+<p><span style="color: #3333b3;"><span style="font-size: x-large;"><br /></span></span></p>
+<p><span style="color: #3333b3;"><span style="font-size: x-large;">Work of Gross-Zagier and Kolyvagin when $r=0$ and $r=1$</span></span></p>
+<p>Let $E: y^2=x^3 +ax+b$ be any elliptic curve (over $\QQ$, meaning with $a$ and $b$ rational numbers).</p>
+<p><strong>Theorem:</strong> Combining work of Benedict Gross and Don Zagier with work of Victor Kolyvagin, one can show:</p>
+<ul>
+<li>If $L(E,1)\neq 0$ the rank is zero.<br /><br /></li>
+<li>If $L(E,1)=0$ and $L'(E,1)\neq 0$ the rank is one.</li>
+</ul>
+<p><img style="float: left;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/gross.png" alt="" height="300" /> <img style="float: right;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/koly.png" alt="" height="300" /></p>
+<p style="text-align: center;"><img style="border-style: initial; border-color: initial; vertical-align: middle;" src="https://github.com/williamstein/simuw12/raw/master/day05/data/zagier.png" alt="" height="300" /></p>
+
+{{{id=3|
+
+///
+}}}
+
+<p><strong>Consequences for the congruent number problem:</strong></p>
+<ol>
+<li>If Tunnell's criterion asserts that $n$ is <strong><em>not</em></strong>&nbsp;a congruent number, then it definitely really isn't.&nbsp;</li>
+<li>"Often" when $n\equiv 5,6,7\pmod{8}$, in fact $n$ really is a congruent number. Though checking the hypothesis of the above thereom (namely that $L'(E,1)\neq 0$) could be difficult.</li>
+</ol>
+<p>&nbsp;</p>
+<p><strong>Example: </strong>$n=157$ is a congruent number, but that doesn't tell us explicitly how to write it as the area of a triangle.</p>
+
+{{{id=2|
+E = EllipticCurve([-157^2,0])
+L = E.lseries()
+///
+}}}
+
+{{{id=1|
+L(1)
+///
+}}}
+
+{{{id=8|
+157 % 8   # forces eps=-1, so L(E,1)=0, automatically
+///
+}}}
+
+{{{id=5|
+L.deriv_at1()[0]    # but L'(E,1) is nonzero
+///
+}}}
+
+{{{id=6|
+E.gens()            # FAIL -- too hard for Sage to easily compute!
+///
+}}}
+
+{{{id=9|
+
+///
+}}}
+
+<p>The above theorem toward BSD is truly amazing. &nbsp; They come up with an analytic formula for of a <strong><em>specific&nbsp;</em><em>point</em></strong>&nbsp;on $E$, then prove it has infinite order under their hypothesis. &nbsp; &nbsp;When their hypothesis is not satisfied, the point is 0, so this exact approach can't generalize to prove the conjecture.</p>
+<p>To prove the BSD conjecture, somebody (you!?) needs to find some deep new structure that allows us to "construct" (however indirectly) rational points on $E$ assuming only that $L(E,1)=0$. &nbsp; So far nobody has a solid idea about how to do this. &nbsp;</p>
+
+{{{id=7|
+
+///
+}}}

@@ -46,8 +46,8 @@ for n in [1..1000]:
 ///
 }}}
 
-<p><strong>In Fact: </strong>Let $n$ be a squarefree integer. &nbsp;One can prove that the root number $\varepsilon$ of $E_n$ is $-1$ if $n\equiv 5,6,7\pmod{n}$ and $+1$ if $n\equiv 1,2,3$.</p>
-<p><strong>Consequence:</strong> &nbsp;If the BSD conjecture is true, then every $n\equiv 5,6,7\pmod{n}$ <strong><em>must</em></strong>&nbsp;be a congruent number, automatically.&nbsp;</p>
+<p><strong>In Fact: </strong>Let $n$ be a squarefree integer. &nbsp;One can prove that the root number $\varepsilon$ of $E_n$ is $-1$ if $n\equiv 5,6,7\pmod{8}$ and $+1$ if $n\equiv 1,2,3\pmod{8}$.</p>
+<p><strong>Consequence:</strong> &nbsp;If the BSD conjecture is true, then every $n\equiv 5,6,7\pmod{8}$ <strong><em>must</em></strong>&nbsp;be a congruent number, automatically.&nbsp;</p>
 
 <p>Next, what about $N$?</p>
 
@@ -83,7 +83,7 @@ for n in [1..1000]:
 }}}
 
 <p>Recall, above that:</p>
-<p><strong>&nbsp; &nbsp;Consequence:</strong>&nbsp;&nbsp;If the BSD conjecture is true, then every $n\equiv 5,6,7\pmod{n}$&nbsp;<strong><em>must</em></strong>&nbsp;be a congruent number, automatically.&nbsp;</p>
+<p><strong>&nbsp; &nbsp;Consequence:</strong>&nbsp;&nbsp;If the BSD conjecture is true, then every $n\equiv 5,6,7\pmod{8}$&nbsp;<strong><em>must</em></strong>&nbsp;be a congruent number, automatically.&nbsp;</p>
 <p>Noam Elkies verified this consequence for all $n&lt;10^6$. &nbsp;Find this at <a href="http://www.math.harvard.edu/~elkies/compnt.html" target="_blank">his page</a>.&nbsp;</p>
 <p>What about $n\equiv 1,2,3\pmod{8}$?</p>
 
